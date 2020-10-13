@@ -73,7 +73,7 @@ class PrimaryNav extends React.Component {
         {...other}
       >
         <ul
-          className="cn-c-primary-nav__list"
+          className='cn-c-primary-nav__list'
           ref={ref => (this[CONTAINER] = ref)}
         >
           {items.map((item, index) => {
@@ -89,7 +89,6 @@ class PrimaryNav extends React.Component {
                 href={item.href}
                 text={item.text}
                 items={item.megaMenuItems}
-                megaMenuHidden={currentIndex !== index}
                 onClick={e => this.onToggle(index, e)}
                 closeMenu={this.onNavClicked}
               />

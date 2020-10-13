@@ -32,7 +32,7 @@ LayoutContainer.propTypes = {
    * - **narrow** yields a LayoutContainer with a narrower width
    * - **very-narrow** yields a LayoutContainer with a very narrow width
    */
-  variant: PropTypes.oneOf(['narrow', 'very-narrow'])
+  variant: PropTypes.oneOf(['narrow'])
 };
 
 export default LayoutContainer;

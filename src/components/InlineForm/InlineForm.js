@@ -36,7 +36,7 @@ class InlineForm extends React.Component {
           className='cn-c-inline-form__label cn-u-is-vishidden'
           text={label}
         />
-        <div class='cn-c-inline-form__body'>
+        <div className='cn-c-inline-form__body'>
           <TextInput
             id={this.id}
             className='cn-c-inline-form__input'

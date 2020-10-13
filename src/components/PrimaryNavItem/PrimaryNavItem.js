@@ -27,17 +27,17 @@ class PrimaryNavItem extends React.Component {
     return (
       <li className={componentClassName} {...other}>
         <TagName
-          className="cn-c-primary-nav__link"
+          className='cn-c-primary-nav__link'
           href={href}
           onClick={onClick}
         >
-          <span className="cn-c-primary-nav__text">{text}</span>
+          <span className='cn-c-primary-nav__text'>{text}</span>
           {items && (
             <Icon
-              aria-hidden="true"
-              focusable="false"
+              aria-hidden='true'
+              focusable='false'
               name={iconName}
-              className="cn-c-primary-nav__icon"
+              className='cn-c-primary-nav__icon'
             />
           )}
         </TagName>
@@ -64,7 +64,7 @@ PrimaryNavItem.propTypes = {
    */
   iconName: PropTypes.string,
   /**
-   * Array of items to be passed to MegaM
+   * Array of items to be passed to Megamenu
    */
   items: PropTypes.array,
   /**
