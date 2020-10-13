@@ -28,27 +28,6 @@ Default.args = {
   fieldNote: 'This is a default select field'
 };
 
-export const Inline = Template.bind({});
-Inline.args = {
-  variant: 'inline',
-  label: 'Label',
-  items: [
-    {
-      value: 'value-1',
-      label: 'Value 1'
-    },
-    {
-      value: 'value-2',
-      label: 'Value 2'
-    },
-    {
-      value: 'value-3',
-      label: 'Value 3'
-    }
-  ],
-  fieldNote: 'This is a default select field'
-};
-
 export const Required = Template.bind({});
 Required.args = {
   required: true,
@@ -110,25 +89,4 @@ Error.args = {
     }
   ],
   fieldNote: 'This is a field with an error'
-};
-
-export const WithoutLabel = Template.bind({});
-WithoutLabel.args = {
-  label: 'Label',
-  hideLabel: true,
-  items: [
-    {
-      value: 'value-1',
-      label: 'Value 1'
-    },
-    {
-      value: 'value-2',
-      label: 'Value 2'
-    },
-    {
-      value: 'value-3',
-      label: 'Value 3'
-    }
-  ],
-  fieldNote: 'This is a disabled select field'
 };

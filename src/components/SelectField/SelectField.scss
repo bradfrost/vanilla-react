@@ -20,28 +20,12 @@
   position: relative;
 }
 
-.cn-c-select-field--inline {
-  display: flex;
-  align-items: center;
-}
-
-.cn-c-select-field__label {
-  .cn-c-select-field--inline & {
-    margin-right: size(1);
-    margin-bottom: 0;
-  }
-}
-
 /**
  * Select field body
  */
 .cn-c-select-field__body {
   position: relative;
   margin-bottom: size(0.5);
-
-  .cn-c-select-field--inline & {
-    margin-bottom: 0;
-  }
 }
 
 /**

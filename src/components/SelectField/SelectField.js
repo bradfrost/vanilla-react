@@ -45,15 +45,13 @@ class SelectField extends React.Component {
       optionalLabel,
       requiredLabel,
       items,
-      variant,
       focus,
       ...other
     } = this.props;
 
     const componentClassName = classnames('cn-c-select-field', className, {
       'cn-is-error': isError,
-      'cn-is-disabled': disabled,
-      'cn-c-select-field--inline': variant == 'inline'
+      'cn-is-disabled': disabled
     });
 
     return (
@@ -149,12 +147,7 @@ SelectField.propTypes = {
   /**
    * String for the required label to add additional information if needed.
    */
-  requiredLabel: PropTypes.string,
-  /**
-   * Available _stylistic_ variations of the component.
-   * - **inline** displays the label and input side by side
-   */
-  variant: PropTypes.oneOf(['inline'])
+  requiredLabel: PropTypes.string
 };
 
 SelectField.defaultProps = {
