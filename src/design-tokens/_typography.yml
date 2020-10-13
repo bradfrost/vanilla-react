@@ -1,0 +1,36 @@
+# Typography
+# This file contains all of the typography-related properties
+# used by the design system
+global:
+  category: 'web'
+  type: 'typography'
+props:
+  font-family-primary:
+    value: '"HelveticaNeue", "Helvetica", "Arial", sans-serif'
+    category: font-family
+  font-size-xxs:
+    value: .625rem
+  font-size-xs:
+    value: .6875rem
+  font-size-sm:
+    value: .75rem
+  font-size-sm-2:
+    value: .875rem
+  font-size-med:
+    value: 1rem
+  font-size-med-2:
+    value: 1.25rem
+  font-size-large:
+    value: 1.5rem
+  font-size-large-2:
+    value: 2rem
+  font-size-xl:
+    value: 2.5rem
+  font-weight-light:
+    value: '300'
+  font-weight-normal:
+    value: '400'
+  font-weight-semibold:
+    value: '600'
+  font-weight-bold:
+    value: '700'

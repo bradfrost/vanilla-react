@@ -1,13 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-
 import GridItem from './GridItem';
 
-let module;
-let stories = storiesOf('Molecules/Layout and Containers/GridItem', module);
+export default {
+  title: 'Molecules/Layout and Containers/Layout Grid Item',
+  component: GridItem
+};
 
-stories.add('Default', () => (
-  <GridItem>
-    <div className='fpo'>Grid item</div>
+const Template = args => (
+  <GridItem {...args}>
+    <div className='fpo' style={{ marginTop: 0, marginBottom: 0 }}>
+      Grid item
+    </div>
   </GridItem>
-));
+);
+
+export const Default = Template.bind({});
+Default.args = {};

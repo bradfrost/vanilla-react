@@ -1,19 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import LayoutContainer from '../LayoutContainer';
 import './Hero.scss';
 
-export class Hero extends Component {
+class Hero extends React.Component {
   render() {
+    const { imgSrc, imgAlt, title, children, ...other } = this.props;
+
     return (
-      <div className='c-hero' {...this.props}>
-        <img
-          className='c-hero__img'
-          src={this.props.imgsrc}
-          alt={this.props.imgalt}
-        />
-        <div className='c-hero__body'>
-          <h2 className='c-hero__title'>{this.props.title}</h2>
-          <p className='c-hero__description'>{this.props.description}</p>
+      <div className="cn-c-hero" {...other}>
+        <img className="cn-c-hero__img" src={imgSrc} alt={imgAlt} />
+        <div className="cn-c-hero__inner">
+          <LayoutContainer className="cn-c-hero__layout-container">
+            <div className="cn-c-hero__body">
+              <h2 className="cn-c-hero__title">{title}</h2>
+              <div className="cn-c-hero__description">{children}</div>
+            </div>
+          </LayoutContainer>
         </div>
       </div>
     );
@@ -21,14 +24,22 @@ export class Hero extends Component {
 }
 
 Hero.propTypes = {
-  imgsrc: PropTypes.string.isRequired,
-  imgalt: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string
+  /**
+   * Child node(s) that can be nested inside component. The Hero child nodes will appear below the hero title
+   */
+  children: PropTypes.node,
+  /**
+   * Hero image alt text
+   */
+  imgAlt: PropTypes.string.isRequired,
+  /**
+   * Path to hero image
+   */
+  imgSrc: PropTypes.string.isRequired,
+  /**
+   * Hero heading title text
+   */
+  title: PropTypes.string
 };
 
-Hero.defaultProps = {
-  imgsrc: '../../images/fpo-1200x650.png',
-  title: 'Hero Title',
-  description: 'This is the hero description'
-};
+export default Hero;

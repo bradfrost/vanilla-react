@@ -1,12 +1,142 @@
-@import '../../css/scss/abstracts/variables';
-@import '../../css/scss/abstracts/mixins';
+@import '../../css/scss/abstracts/_variables.scss';
+@import '../../css/scss/abstracts/_mixins.scss';
 
 /*------------------------------------*\
     #RADIO FIELD
 \*------------------------------------*/
 
 /**
- * 1) 
+ * 1) Consists of a label, list of radio items, and an optional note about the field.
  */
-.c-radio-field {
+.cn-c-radio-field {
+  @include fieldsetStyles;
+  position: relative;
+}
+
+/**
+ * 1) Consists of a label, list of radio items, and an optional note about the field.
+ */
+.cn-c-radio-field--inverted {
+  color: $color-form-label-inverted;
+}
+
+.cn-c-radio-field--inline-label {
+  display: flex;
+}
+
+/**
+ * Radio field body
+ * 1) Contains the list of radio options
+ */
+.cn-c-radio-field__body {
+  position: relative;
+  margin-bottom: size(0.5);
+}
+
+.cn-c-radio-field__label {
+  .cn-c-radio-field--inline-label & {
+    margin-right: size(1);
+    margin-bottom: 0;
+  }
+}
+
+/**
+ * Radio field list
+ */
+.cn-c-radio-field__list {
+  @include reset;
+  list-style: none;
+
+  /**
+     * Radio field list inside inline variant
+     * 1) place items beside each other
+     */
+  .cn-c-radio-field--inline & {
+    display: flex; /* 1 */
+  }
+}
+
+/**
+ * Radio field list item
+ * 1) Place control and label beside each other
+ * 2) Spacing between items
+ */
+.cn-c-radio-field__item {
+  display: flex; /* 1 */
+  margin-bottom: size(2); /* 2 */
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  /**
+     * Radio field list item inside inline variant 
+     */
+  .cn-c-radio-field--inline & {
+    margin-bottom: 0;
+    margin-right: size(2); /* 2 */
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+/**
+ * Checkbox field item label 
+ */
+.cn-c-radio-field__item-label {
+  @include typography-preset-6;
+  @include legacyLabelOverrides;
+  color: $color-form-label;
+  padding-left: size(1); /* 3 */
+
+  .cn-c-radio-field.cn-is-disabled & {
+    color: $color-neutral-gray-42;
+    cursor: not-allowed;
+  }
+
+  /**
+   * Inverted radio field
+   */
+  .cn-c-radio-field--inverted & {
+    color: $color-form-label-inverted;
+  }
+}
+
+/**
+ * Radio field control
+ * 1) The actual radio form control
+ * 2) Align control to label
+ */
+.cn-c-radio-field__item-control {
+  position: relative;
+  top: 2px; /* 2 */
+}
+
+/**
+ * Radio field note
+ */
+.cn-c-radio-field__note {
+  /**
+     * Radio field note within error state
+     * 1) Set to display flex to place icon next to the fieldnote
+     */
+  .cn-is-error & {
+    display: inline-flex;
+  }
+}
+
+/**
+ * Radio field note icon
+ * 1) Icon prepended to fieldnote for error states, etc.
+ */
+.cn-c-radio-field__note-icon {
+  /**
+     * Radio field note icon within error state
+     * 1) Change color to error utility
+     */
+  .cn-is-error & {
+    margin-right: size(1);
+    fill: $color-utility-error; /* 1 */
+  }
 }

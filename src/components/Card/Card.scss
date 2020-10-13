@@ -1,16 +1,81 @@
-@import '../../css/scss/abstracts/variables';
-@import '../../css/scss/abstracts/mixins';
+@import '../../css/scss/abstracts/_variables.scss';
+@import '../../css/scss/abstracts/_mixins.scss';
 
 /*------------------------------------*\
     #CARD
 \*------------------------------------*/
 
-.c-card {
-  border: 1px solid $color-neutral-gray-50;
-  padding: 1rem;
+/**
+ * 1) A card is a block that typically contains a title, image,
+ *    text, and/or calls to action
+ */
+.cn-c-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  // box-shadow: 1px 1px 2px 1px $color-neutral-gray-10;
+  border-radius: $border-radius;
+  border: 1px solid $color-neutral-gray-20;
+  background-color: $color-neutral-white;
 }
 
-.c-card--dark {
-  background: #000;
-  color: #fff;
+/**
+ * Centered card
+ * 1) Card where the content is centered
+ */
+.cn-c-card--center {
+  text-align: center;
+}
+
+/**
+ * Card Inverted
+ * 1) Used on dark backgrounds to lighten the text color and remove a box shadow
+ */
+.cn-c-card--inverted {
+  color: $color-neutral-white;
+  background: none;
+  box-shadow: none;
+}
+
+/**
+ * Card header
+ */
+.cn-c-card__header {
+  height: 100%;
+}
+
+/**
+ * Card title
+ */
+.cn-c-card__title {
+  @include reset;
+  margin-bottom: size(2);
+}
+
+/**
+ * Card image
+ */
+.cn-c-card__img {
+  display: block;
+  width: 100%;
+}
+
+/**
+ * Card body
+ */
+.cn-c-card__body {
+  padding: size(2);
+  flex: auto;
+}
+
+/**
+ * Card footer
+ * 1) Using margin-top since card__footer is
+ *    optional and may not always exist. Putting
+ *    margin-bottom on card__body would result in
+ *    a gap if card__footer does not exist
+ */
+.cn-c-card__footer {
+  padding: size(2);
+  margin-top: size(2); /* 1 */
 }

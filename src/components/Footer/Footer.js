@@ -1,30 +1,31 @@
-import React, { Component } from 'react';
-import { FooterNav } from '../FooterNav/FooterNav';
-import { InlineForm } from '../InlineForm/InlineForm';
-import LayoutContainer from '../LayoutContainer/LayoutContainer';
-import globals from '../../data/globals.json';
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import { LayoutContainer } from 'design-system-name';
 import './Footer.scss';
 
-export class Footer extends Component {
+class Footer extends React.Component {
   render() {
-    return (
-      <footer role='contentinfo' className='c-footer' {...this.props}>
-        <LayoutContainer>
-          <InlineForm
-            method='post'
-            action='#'
-            placeholder='name@email.com'
-            cta='Join our newsletter'
-            id='search-form'
-            label='Email address'
-          />
-          <FooterNav />
+    const { className, children, ...other } = this.props;
 
-          <p className='c-footer__copyright'>
-            &copy; {new Date().getFullYear()} {globals.company.name}
-          </p>
-        </LayoutContainer>
-      </footer>
+    const componentClassName = classnames('atm-c-footer', className, {});
+    return (
+      <div className={componentClassName} {...other}>
+        <LayoutContainer>{children}</LayoutContainer>
+      </div>
     );
   }
 }
+
+Footer.propTypes = {
+  /**
+   * Child node(s) that can be nested inside component
+   */
+  children: PropTypes.node,
+  /**
+   * CSS class names that can be appended to the component.
+   */
+  className: PropTypes.string
+};
+
+export default Footer;

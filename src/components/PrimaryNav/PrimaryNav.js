@@ -1,22 +1,98 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import shortid from 'shortid';
+import PrimaryNavItem from '../PrimaryNavItem';
 import './PrimaryNav.scss';
 
-export class PrimaryNav extends Component {
+const CONTAINER = Symbol('CONTAINER');
+
+class PrimaryNav extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentIndex: null
+    };
+
+    this.onClickOutside = this.onClickOutside.bind(this);
+    this.onToggle = this.onToggle.bind(this);
+    this.onNavClicked = this.onNavClicked.bind(this);
+
+    this.id = this.props.id || shortid.generate();
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.onClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.onClickOutside);
+  }
+
+  onClickOutside(event) {
+    if (this[CONTAINER] && !this[CONTAINER].contains(event.target)) {
+      this.setState({
+        currentIndex: null
+      });
+    }
+  }
+
+  onToggle(index, e) {
+    e.preventDefault();
+
+    if (!this.props.items[index].megaMenuItems) return;
+
+    if (this.state.currentIndex != index) {
+      this.setState({
+        currentIndex: index
+      });
+    } else {
+      this.setState({
+        currentIndex: null
+      });
+    }
+  }
+
+  onNavClicked() {
+    this.setState({
+      currentIndex: null
+    });
+  }
+
   render() {
+    const { className, items, id, ariaLabel, ...other } = this.props;
+    const { currentIndex } = this.state;
+
+    const componentClassName = classnames('cn-c-primary-nav', className);
+
     return (
-      <nav className='c-primary-nav { this.props.styleModifier }'>
-        <ul className='c-primary-nav__list'>
-          {this.props.navitems.map(function(navitem, index) {
+      <nav
+        id={this.id}
+        aria-label={ariaLabel}
+        className={componentClassName}
+        {...other}
+      >
+        <ul
+          className="cn-c-primary-nav__list"
+          ref={ref => (this[CONTAINER] = ref)}
+        >
+          {items.map((item, index) => {
+            const itemClassName = classnames({
+              'cn-is-active': item.megaMenuItems && currentIndex === index
+            });
             return (
-              <li
-                className='c-primary-nav__item'
-                key={`c-primary-nav__item-${index}`}
-              >
-                <a href={navitem.href} onClick={navitem.onClick}>
-                  {navitem.text}
-                </a>
-              </li>
+              <PrimaryNavItem
+                className={itemClassName}
+                iconName={item.iconName}
+                key={`cn-c-primary-nav-item-${index}`}
+                tagName={item.tag}
+                href={item.href}
+                text={item.text}
+                items={item.megaMenuItems}
+                megaMenuHidden={currentIndex !== index}
+                onClick={e => this.onToggle(index, e)}
+                closeMenu={this.onNavClicked}
+              />
             );
           })}
         </ul>
@@ -26,25 +102,31 @@ export class PrimaryNav extends Component {
 }
 
 PrimaryNav.propTypes = {
-  navitems: PropTypes.array.isRequired,
-  href: PropTypes.string,
-  onClick: PropTypes.func,
-  text: PropTypes.string
+  /**
+   * aria-label for `nav` element to describe PrimaryNav to screen readers
+   */
+  ariaLabel: PropTypes.string,
+  /**
+   * CSS class names that can be appended to the component.
+   */
+  className: PropTypes.string,
+  /**
+   * HTML id for the component
+   */
+  id: PropTypes.string,
+  /**
+   * The array of items to be passed into the component. The array must take on the specified shape
+   */
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      href: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired
+    })
+  ).isRequired
 };
 
 PrimaryNav.defaultProps = {
-  navitems: [
-    {
-      href: '#',
-      text: 'Nav Item'
-    },
-    {
-      href: '#',
-      text: 'Nav Item'
-    },
-    {
-      href: '#',
-      text: 'Nav Item'
-    }
-  ]
+  ariaLabel: 'primary navigation'
 };
+
+export default PrimaryNav;

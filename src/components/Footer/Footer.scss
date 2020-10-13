@@ -6,15 +6,9 @@
 \*------------------------------------*/
 
 /**
- * 1) Global footer at the bottom of each page that contains a navigation and other information.
+ * 1) 
  */
-.c-footer {
-  background: $color-neutral-gray-93;
-  color: $color-neutral-white;
-  padding: $spacing;
-}
-
-.c-footer__copyright {
-  margin-top: 2rem;
-  text-align: center;
+.atm-c-footer {
+  background-color: $color-neutral-gray-10;
+  padding: size(4);
 }

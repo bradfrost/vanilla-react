@@ -1,11 +1,18 @@
-import React, { PropTypes } from "react";
-import { storiesOf } from "@storybook/react";
+import React from 'react';
+import Icon from './Icon';
 
+export default {
+  title: 'Atoms/Icons/Icon',
+  component: Icon
+};
 
-import { Icon } from "./Icon";
+const Template = args => <Icon {...args} />;
 
-let stories = storiesOf("Atoms/Icons/Icon", module);
+export const Default = Template.bind({});
+Default.args = { name: 'triangle-right' };
 
-
-
-stories.add("Default", () => <Icon />);
+export const Inverted = () => (
+  <div className="cn-u-padding-large" style={{ background: '#000000' }}>
+    <Icon theme="inverted" name="triangle-right" />
+  </div>
+);

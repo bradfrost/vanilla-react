@@ -1,45 +1,134 @@
-import React, { PropTypes } from "react";
-import { storiesOf } from "@storybook/react";
+import React from 'react';
+import SelectField from './SelectField';
 
+export default {
+  title: 'Molecules/Forms/SelectField',
+  component: SelectField
+};
 
-import { SelectField } from "./SelectField";
+const Template = args => <SelectField {...args} />;
 
-let stories = storiesOf("Molecules/Forms/SelectField", module);
+export const Default = Template.bind({});
+Default.args = {
+  label: 'Label',
+  items: [
+    {
+      value: 'value-1',
+      label: 'Value 1'
+    },
+    {
+      value: 'value-2',
+      label: 'Value 2'
+    },
+    {
+      value: 'value-3',
+      label: 'Value 3'
+    }
+  ],
+  fieldNote: 'This is a default select field'
+};
 
+export const Inline = Template.bind({});
+Inline.args = {
+  variant: 'inline',
+  label: 'Label',
+  items: [
+    {
+      value: 'value-1',
+      label: 'Value 1'
+    },
+    {
+      value: 'value-2',
+      label: 'Value 2'
+    },
+    {
+      value: 'value-3',
+      label: 'Value 3'
+    }
+  ],
+  fieldNote: 'This is a default select field'
+};
 
+export const Required = Template.bind({});
+Required.args = {
+  required: true,
+  label: 'Label',
+  items: [
+    {
+      value: 'value-1',
+      label: 'Value 1'
+    },
+    {
+      value: 'value-2',
+      label: 'Value 2'
+    },
+    {
+      value: 'value-3',
+      label: 'Value 3'
+    }
+  ],
+  fieldNote: 'This is a required select field'
+};
 
-stories.add("Default", () => (
-	<SelectField
-		listItems={[
-			{
-				value: "value-1",
-				option: "Value 1"
-			},
-			{
-				value: "value-2",
-				option: "Value 2"
-			},
-			{
-				optGroupLabel: "Group 1",
-				optGroupItems: [
-					{
-						value: "value-3",
-						option: "Value 3"
-					},
-					{
-						value: "value-4",
-						option: "Value 4"
-					},
-					{
-						value: "value-5",
-						option: "Value 5"
-					}
-				]
-			}
-		]}
-	/>
-));
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
+  label: 'Label',
+  items: [
+    {
+      value: 'value-1',
+      label: 'Value 1'
+    },
+    {
+      value: 'value-2',
+      label: 'Value 2'
+    },
+    {
+      value: 'value-3',
+      label: 'Value 3'
+    }
+  ],
+  fieldNote: 'This is a disabled select field'
+};
 
-stories.add("Required", () => <SelectField required />);
-stories.add("Disabled", () => <SelectField disabled />);
-stories.add("Error", () => <SelectField hasError />);
+export const Error = Template.bind({});
+Error.args = {
+  isError: true,
+  label: 'Label',
+  items: [
+    {
+      value: 'value-1',
+      label: 'Value 1'
+    },
+    {
+      value: 'value-2',
+      label: 'Value 2'
+    },
+    {
+      value: 'value-3',
+      label: 'Value 3'
+    }
+  ],
+  fieldNote: 'This is a field with an error'
+};
+
+export const WithoutLabel = Template.bind({});
+WithoutLabel.args = {
+  label: 'Label',
+  hideLabel: true,
+  items: [
+    {
+      value: 'value-1',
+      label: 'Value 1'
+    },
+    {
+      value: 'value-2',
+      label: 'Value 2'
+    },
+    {
+      value: 'value-3',
+      label: 'Value 3'
+    }
+  ],
+  fieldNote: 'This is a disabled select field'
+};

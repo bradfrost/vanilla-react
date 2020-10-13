@@ -7,33 +7,187 @@
 
 /**
  * 1) Button or link that has functionality to it
+ * 2) Defaults to primary button
+ * 3) Margin 0 added becuase Safari has margin on the button
  */
-.c-btn {
-  display: flex;
-  background: #333;
-  color: #fff;
-  border: 0;
-  padding: $spacing;
+.cn-c-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: size(1.5);
+  padding-right: size(5);
+  padding-bottom: size(1.5);
+  padding-left: size(5);
+  margin: 0;
+  border-width: $border-width-med;
+  border-style: solid;
+  border-color: $color-brand-blue;
+  border-radius: $border-radius;
+  @include typography-preset-5--bold;
+  font-family: inherit;
+  background-color: $color-neutral-white;
+  color: $color-brand-blue;
+  cursor: pointer;
+  transition: background-color $anim-fade-quick $anim-ease,
+    border-color $anim-fade-quick $anim-ease,
+    box-shadow $anim-fade-quick $anim-ease,
+    transform $anim-fade-quick $anim-ease;
+
+  &:hover,
+  &:focus {
+    background-color: $color-neutral-white;
+    color: $color-tint-brand-atlantic-amethyst-shade;
+    border-color: $color-tint-brand-atlantic-amethyst-shade;
+  }
+
+  &:focus {
+    @include focus;
+  }
+
+  &:active {
+    background: $color-neutral-gray-05;
+  }
+
+  /**
+   * Disabled buttons
+   */
+  &:disabled {
+    background: $color-neutral-gray-20;
+    border-color: $color-neutral-gray-20;
+    color: $color-neutral-white;
+    text-shadow: none;
+    cursor: not-allowed;
+
+    &:hover,
+    &:focus {
+      background: $color-neutral-gray-20;
+      border-color: $color-neutral-gray-20;
+      box-shadow: none;
+      transform: none;
+    }
+  }
 }
 
 /**
- * Secondary button
- * 1) Different button style 
+ * Primary button
+ * 1) Prominent button styles that should be applied to
+ *    the most important action of a page.
  */
-.c-btn--secondary {
-  background: #eee;
-  color: #222;
-  border: 1px solid #eee;
+.cn-c-btn--primary {
+  border-width: $border-width-med;
+  border-style: solid;
+  border-color: $color-tint-brand-atlantic-amethyst-shade-light;
+  background-color: $color-primary-action-background;
+  color: $color-primary-action-text;
+  box-shadow: none;
+
+  &:focus {
+    @include focus;
+  }
+
+  &:active {
+    transition: none;
+    background-color: $color-primary-action-background-active;
+  }
 }
 
-.c-btn__icon {
-  fill: #fff;
+/**
+ * Link Button
+ * 1) A button that is visually styled like a text link
+ */
+.cn-c-btn--link {
+  align-items: flex-start;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  text-align: left;
+  @include text-link();
+  background-color: transparent;
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+  }
 }
 
-.c-btn__text + .c-btn__icon {
-  margin-left: 0.5rem;
+/**
+ * Link inverted button
+ * 1) A button that is visually styled like a text link with white text
+ * 2) Used for link button on a dark background
+ */
+.cn-c-btn--link-inverted {
+  align-items: flex-start;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  text-align: left;
+  @include text-link();
+  color: $color-neutral-white;
+  background-color: transparent;
+  transition: color $anim-fade-quick $anim-ease;
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+  }
 }
 
-.c-btn__icon + .c-btn__text {
-  margin-left: 0.5rem;
+/**
+ * Block button
+ * 1) A block button fills 100% of the width of its container
+ */
+.cn-c-btn--block {
+  width: 100%;
+}
+
+/**
+ * Button Icon
+ * 1) Set SVG icon fill to the current text color
+ */
+.cn-c-btn__icon {
+  fill: currentColor; /* 1 */
+
+  /**
+   * Button icon within link button
+   * 1) Button icon should align with top line of text if link button text wraps
+   */
+  .cn-c-btn--link & {
+    position: relative; /* 1 */
+    top: 4px; /* 1 */
+  }
+}
+
+/**
+ * Button text before icon spacing
+ * 1) Controls the spacing between the button text
+ *    and the icon that comes _before_ button text
+ */
+.cn-c-btn__icon + .cn-c-btn__text:not(.cn-u-is-vishidden) {
+  margin-left: size(1); /* 1 */
+}
+
+/**
+ * Button after icon spacing
+ * 1) Controls the spacing between the button text
+ *    and the icon that comes _after_ button text
+ */
+.cn-c-btn__text:not(.cn-u-is-vishidden) + .cn-c-btn__icon {
+  margin-left: size(1); /* 1 */
+
+  /**
+   * Button icon after button text that's not vishidden within a link variant button
+   */
+  .cn-c-btn--link & {
+    margin-left: size(0.5);
+  }
+}
+
+/* The animation code */
+@keyframes rotateIcon {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

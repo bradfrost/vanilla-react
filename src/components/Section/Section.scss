@@ -1,5 +1,5 @@
-@import '../../css/scss/abstracts/variables';
-@import '../../css/scss/abstracts/mixins';
+@import '../../css/scss/abstracts/_variables.scss';
+@import '../../css/scss/abstracts/_mixins.scss';
 
 /*------------------------------------*\
     #SECTION
@@ -7,34 +7,48 @@
 
 /**
  * Section
- * 1) A section is a discrete section of a web page 
+ * 1) A section is a discrete section of a web page
  */
-.c-section {
-  padding: 2rem;
+.cn-c-section {
+  padding-top: size(4);
+  padding-bottom: size(4);
 }
 
 /**
  * Section header
- * 1) contains the section title, description and other header content 
+ * 1) contains the section title, description and other header content
  */
-.c-section__header {
+.cn-c-section__header {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: size(4);
+
+  /**
+     * Section header within centered section
+     */
+  .cn-c-section--center & {
+    align-items: center;
+  }
+}
+
+.cn-c-section__kicker {
+  @include reset;
+  @include typography-preset-8--bold;
 }
 
 /**
- * Section title 
+ * Section title
  */
-.c-section__title {
-  font-size: 2rem;
+.cn-c-section__title {
   margin: 0;
+  @include typography-preset-2--bold($responsive: true);
 }
 
 /**
- * Section description 
+ * Section description
  */
-.c-section__description {
-  margin: 0;
+.cn-c-section__description {
+  @include typography-preset-4($responsive: true);
+  @include reset;
+  margin-top: size(1);
 }

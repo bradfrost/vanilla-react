@@ -1,0 +1,30 @@
+@import '../../css/scss/abstracts/_variables.scss';
+@import '../../css/scss/abstracts/_mixins.scss';
+
+/*------------------------------------*\
+    #SELECT
+\*------------------------------------*/
+
+/**
+ * Select Dropdown
+ * 1) Make room for select dropdown icon 
+ */
+.cn-c-select {
+  @include inputStyles;
+  padding-right: size(4); /* 1 */
+  background-color: $color-neutral-white;
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  &:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+  }
+
+  &:focus::-ms-value {
+    color: $color-neutral-black;
+    background: #fff;
+  }
+}

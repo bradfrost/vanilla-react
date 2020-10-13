@@ -1,0 +1,13 @@
+# Design tokens
+# This file imports all of the other
+# token definition files and will be
+# used to build the combined token file
+imports:
+  - ./_colors.yml
+  - ./_size.yml
+  - ./_typography.yml
+  - ./_layout.yml
+  - ./_borders.yml
+  - ./_shadows.yml
+  - ./_animation.yml
+  - ./_breakpoints.yml

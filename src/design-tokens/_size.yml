@@ -1,0 +1,10 @@
+# Size
+# Used to size grids, body padding and margins, and typography
+#
+global:
+  category: 'web'
+  type: 'size'
+props:
+  size-base-unit:
+    value: '0.5rem' # = 8px
+    comment: The size value is used as a multiplier to determine typography and spacing sizes. For instance, font-size-large = size(3), which results in a 24px font size.

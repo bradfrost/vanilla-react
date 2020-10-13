@@ -1,21 +1,37 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import Section from './Section';
 
-import { Section } from './Section';
+export default {
+  title: 'Organisms/Sections/Section',
+  component: Section
+};
 
-let stories = storiesOf('Organisms/Sections/Section', module);
-
-stories.add('Default', () => (
-  <Section
-    title='Section Title'
-    description='This is a description of what the section is'
-  >
-    <div className='fpo'>
-      This is the section body, where you can put any content or include other
-      components.
-      <div className='fpo'>Subcomponent</div>
-      <div className='fpo'>Subcomponent</div>
-      <div className='fpo'>Subcomponent</div>
-    </div>
+const Template = args => (
+  <Section {...args}>
+    This is the section body, where you can put any content or include other
+    components.
   </Section>
-));
+);
+
+export const Default = Template.bind({});
+Default.args = { title: 'Section Title' };
+
+export const WithDescription = Template.bind({});
+WithDescription.args = {
+  title: 'Section Title',
+  description: 'This is a description of what the section is'
+};
+
+export const WithKicker = Template.bind({});
+WithKicker.args = {
+  kicker: 'Section kicker',
+  title: 'Section Title',
+  description: 'This is a description of what the section is'
+};
+
+export const Center = Template.bind({});
+Center.args = {
+  align: 'center',
+  title: 'Section Title',
+  description: 'This is a description of what the section is'
+};

@@ -1,164 +1,106 @@
-/*------------------------------------*\
-    #VARIABLES
-\*------------------------------------*/
+@import './tokens.scss';
 
-/**
- * CONTENTS
- *
- * COLORS
- * Brand Colors...............Globally-available variables and config
- * Neutral Colors.............Grayscale colors, including white and black
- * Utility Colors.............Info, Warning, Error, Success
- *
- * TYPOGRAPHY
- * Font Families..............The fonts used in the design system
- * Sizing.....................Font sizing
- *
- * LAYOUT
- * Max-widths.................Maximum layout container width
- *
+//------------------------------------//
+//   #VARIABLES
+//------------------------------------//
 
- * SPACING
- * Spacing defaults...........Spacing between elements
- *
- * BORDERS
- * Border Width...............Border thicknesses
- * Border Radius..............Border radius definitions
- *
- * ANIMATION
- * Animation Speed............Transition/animation speed variables
- * Animation easing...........Easing variables
- *
- * BREAKPOINTS
- * Breakpoints................Global breakpoint definitions
- */
+//------------------------------------//
+//   #COLORS
+//------------------------------------//
 
-/*------------------------------------*\
-     #COLORS
- \*------------------------------------*/
+// Brand Color Tints and Shades
 
-/**
- * Brand Colors
- * 1) Brand=specific colors
- */
-$color-brand-blue: #0000ff;
-$color-brand-orange: orange;
+//  $color-brand-blue
+$color-tint-brand-rhapsody-blue-shade-light: lighten($color-brand-blue, 5%);
 
-/**
- * Neutral Colors
- * 1) Neutral colors are grayscale values used throughout the UI
- */
-$color-neutral-white: #fff;
-$color-neutral-gray-02: #f9f9f9;
-$color-neutral-gray-07: #eee;
-$color-neutral-gray-13: #ddd;
-$color-neutral-gray-27: #bbb;
-$color-neutral-gray-50: #808080;
-$color-neutral-gray-60: #666;
-$color-neutral-gray-73: #444;
-$color-neutral-gray-93: #131313;
-$color-neutral-black: #000;
+// $color-brand-blue
+$color-tint-brand-atlantic-amethyst-shade-lightest: lighten(
+  $color-brand-blue,
+  45%
+);
 
-/**
- * Utility Colors
- * 1) Utility colors are colors used to provide feedback, such as alert messages,
- *    form validation, etc.
- */
-$color-utility-info: #0192d0;
-$color-utility-info-light: #d3f2ff;
-$color-utility-error: #b12a0b;
-$color-utility-error-light: #fdded8;
-$color-utility-success: #03804d;
-$color-utility-success-light: #d4f3e6;
-$color-utility-warning: #a59b15;
-$color-utility-warning-light: #fffecf;
+// $color-brand-blue
+$color-tint-brand-atlantic-amethyst-shade-light: lighten(
+  $color-brand-blue,
+  5.8%
+);
 
-/*------------------------------------*\
-    #TYPOGRAPHY
-\*------------------------------------*/
+$color-tint-brand-atlantic-amethyst-shade: darken($color-brand-blue, 17%);
 
-/**
- * Font Family
- */
-$font-primary: 'HelveticaNeue', 'Helvetica', 'Arial', sans-serif;
-$font-secondary: serif;
+$color-tint-brand-atlantic-amethyst-shade-deep: darken($color-brand-blue, 25%);
 
-/**
- * Font Sizing
- */
-$font-size-sm: 0.75rem;
-$font-size-sm-2: 0.85rem;
-$font-size-med: 1rem;
-$font-size-med-2: 1.2rem;
-$font-size-large: 2rem;
-$font-size-xl: 3rem;
+// Size
+// 1) The size function multiplies a provided value ($value)
+//    by the base sizing unit ($size-base-unit)
+// 2) $value should be limited to integers (e.g. 3) or half integers (e.g. 1.5)
+// 3) NOTE: This exists in variables (not in mixins) because this function is used for the Font Sizing below
+// and the CSS cascade requires this to be before those variables.
+@function size($value) {
+  @return $value * $size-base-unit; // size-value = 0.5rem
+}
 
-/**
- * Line Height
- */
-$line-height: 1.5;
+//------------------------------------//
+//   #SECOND-TIER VARIABLES
+//------------------------------------//
 
-/*------------------------------------*\
-    #LAYOUT
-\*------------------------------------*/
+// 1) Second-tier variables map tokens (first-tier variables)
+//    to applications. Second-tier variables can in turn
+//    be used by other components
 
-/**
- * Max Width
- */
-$l-max-width: 70rem !default;
-$l-linelength-width: 36rem !default;
+//------------------------------------//
+//   #FORMS SECOND-TIER
+//------------------------------------//
 
-/*------------------------------------*\
-    #SPACING
-\*------------------------------------*/
+// Form background colors
+$color-form-background-disabled: $color-neutral-gray-05;
 
-/**
- * Spacing and offsets
- * 1) Used to space grids and body padding
- */
+// Form border colors
+$color-form-border: $color-neutral-gray-50;
+$color-form-border-hover: $color-neutral-gray-60;
+$color-form-border-focus: $color-brand-blue;
+$color-form-border-error: $color-utility-error;
+$color-form-border-disabled: $color-neutral-gray-50;
+$color-form-border-inverted: rgba(159, 167, 173, 0.75);
+$color-form-border-inverted-hover: $color-neutral-white;
+$color-form-border-inverted-focus: $color-brand-blue;
 
-$spacing: 1rem;
-$spacing-small: 0.5rem;
-$spacing-large: 2rem;
+// Default form label color
+$color-form-label: $color-neutral-black;
+$color-form-label-disabled: $color-neutral-gray-42;
+$color-form-label-inverted: $color-neutral-white;
 
-/*------------------------------------*\
-    #BORDERS
-\*------------------------------------*/
+// Toggle border color
+$color-toggle-border-color: $color-form-border;
+$color-toggle-border-color-hover: $color-brand-blue;
+$color-toggle-border-color-selected: $color-brand-blue;
+$toggle-box-shadow-selected: inset 0px 0px 0px $border-width
+  $color-toggle-border-color-selected;
 
-/**
- * Border
- */
-$border-thickness: 1px;
+// The padding for text inputs, selects, and textareas
+$spacing-form-input-padding: size(1);
+// The spacing in between a label and the control that sits beneath it
+$spacing-form-label-block: size(0.5);
 
-/**
- * Border radius
- */
-$border-radius: 4px;
+// Focus color definitions
+// 1) This is the default focus outline color
+// 2) Focus outline color for elements on dark backgrounds
+$color-focus: $color-brand-blue; // 1
+$color-focus-inverted: $color-neutral-white; // 2
 
-/*------------------------------------*\
-    #ANIMATION
-\*------------------------------------*/
+//------------------------------------//
+//   #PRIMARY ACTION
+//------------------------------------//
 
-/**
- * Transition Speed
- */
-$anim-fade-quick: 0.15s;
-$anim-fade-long: 0.4s;
+// 1) Used for UI elements that indicate primary actions
+//    such as submitting a form, choosing a date, etc
+$color-primary-action-background: $color-brand-blue;
+$color-primary-action-background-hover: $color-tint-brand-atlantic-amethyst-shade;
+$color-primary-action-background-active: $color-tint-brand-atlantic-amethyst-shade-deep;
+$color-primary-action-text: $color-neutral-white;
 
-/**
- * Transition Ease
- */
-$anim-ease: ease-out;
+//------------------------------------//
+//   #BOX SECOND-TIER
+//------------------------------------//
 
-/*------------------------------------*\
-    #BREAKPOINTS
-\*------------------------------------*/
-
-/**
- * Breakpoints used in media queries
- * 1) These are not the only breakpoints used, but they provide a few defaults
- */
-$bp-small: 28em;
-$bp-med: 47em;
-$bp-large: 60em;
-$bp-xl: 70em;
+$color-box-border: $color-neutral-gray-20;
+$spacing-box-padding: size(2);

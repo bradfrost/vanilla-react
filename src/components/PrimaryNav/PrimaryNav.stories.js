@@ -1,11 +1,30 @@
-import React from "react";
-import { storiesOf } from "@storybook/react";
+import React from 'react';
+import PrimaryNav from './PrimaryNav';
 
+export default {
+  title: 'Molecules/Navigation/PrimaryNav',
+  component: PrimaryNav
+};
 
-import { PrimaryNav } from "./PrimaryNav";
+const Template = args => <PrimaryNav {...args} />;
 
-let stories = storiesOf("Molecules/Navigation/PrimaryNav", module);
-
-
-
-stories.add("Default", () => <PrimaryNav />);
+export const Default = Template.bind({});
+Default.args = {
+  items: [
+    {
+      tag: 'a',
+      href: '#',
+      text: 'Nav item 1'
+    },
+    {
+      tag: 'a',
+      href: '#',
+      text: 'Nav item 2'
+    },
+    {
+      tag: 'a',
+      href: '#',
+      text: 'Nav item 3'
+    }
+  ]
+};

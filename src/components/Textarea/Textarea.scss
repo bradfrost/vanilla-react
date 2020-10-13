@@ -1,0 +1,14 @@
+@import '../../css/scss/abstracts/variables.scss';
+@import '../../css/scss/abstracts/mixins.scss';
+
+/*------------------------------------*\
+    #TEXTAREA
+\*------------------------------------*/
+
+/**
+ * Inherits base textarea styles 
+ */
+.cn-c-textarea {
+  @include inputStyles;
+  resize: none;
+}

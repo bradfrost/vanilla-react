@@ -1,56 +1,41 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import "./FooterNav.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import './FooterNav.scss';
 
-export class FooterNav extends Component {
-	render() {
-		return (
-			<nav className="c-footer-nav">
-				<ul className="c-footer-nav__list">
-					{this.props.listItems.map(function(listItem, index) {
-						return (
-							<li
-								className="c-footer-nav__item"
-								key={`c-footer-nav-item-${index}`}
-							>
-								<a
-									className="c-footer-nav__link"
-									href={listItem.href}
-								>
-									{listItem.text}
-								</a>
-							</li>
-						);
-					})}
-				</ul>
-			</nav>
-		);
-	}
+class FooterNav extends React.Component {
+  render() {
+    const { items, ...other } = this.props;
+    return (
+      <nav className="cn-c-footer-nav" {...other}>
+        <ul className="cn-c-footer-nav__list">
+          {items.map((item, index) => {
+            return (
+              <li
+                className="cn-c-footer-nav__item"
+                key={`cn-c-footer-nav-item-${index}`}
+              >
+                <a className="cn-c-footer-nav__link" href={item.href}>
+                  {item.text}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    );
+  }
 }
 
 FooterNav.propTypes = {
-	listItems: PropTypes.array,
-	href: PropTypes.string,
-	text: PropTypes.string
+  /**
+   * The array of items to be passed into the component. The array must take on the specified shape
+   */
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      href: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired
+    })
+  )
 };
 
-FooterNav.defaultProps = {
-	listItems: [
-		{
-			href: "#",
-			text: "Footer Nav Item 1"
-		},
-		{
-			href: "#",
-			text: "Footer Nav Item 2"
-		},
-		{
-			href: "#",
-			text: "Footer Nav Item 3"
-		},
-		{
-			href: "#",
-			text: "Footer Nav Item 4"
-		}
-	]
-};
+export default FooterNav;

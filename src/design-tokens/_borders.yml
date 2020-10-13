@@ -1,0 +1,28 @@
+# Borders
+# This file contains all of the border-related properties
+# used by the design system
+global:
+  category: 'web'
+  type: 'borders'
+props:
+  border-width:
+    value: '1px'
+    category: sizing
+  border-width-med:
+    value: '2px'
+    category: sizing
+  border-width-large:
+    value: '4px'
+    category: sizing
+  border-width-xl:
+    value: '8px'
+    category: sizing
+  border-radius:
+    value: '4px'
+    category: border-radius
+  border-radius-large:
+    value: '8px'
+    category: border-radius
+  border-radius-xl:
+    value: '20px'
+    category: border-radius

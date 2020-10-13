@@ -1,3 +1,450 @@
-/*------------------------------------*\
-    #MIXINS
-\*------------------------------------*/
+//------------------------------------//
+//   #RESET
+//------------------------------------//
+
+// Zeroes out margin and padding
+@mixin reset() {
+  margin: 0;
+  padding: 0;
+}
+
+//------------------------------------//
+//   #MIXINS
+//------------------------------------//
+
+// Page Grid
+@mixin page-grid() {
+  display: grid;
+  grid-gap: size(2); // spacing(2)
+  grid-template-columns: repeat(1, 1fr);
+
+  @media all and (min-width: $bp-large) {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+//------------------------------------//
+//   #TYPOGRAPHY MIXINS
+//------------------------------------//
+
+// Unitless Line Height
+// 1) https://joecianflone.co/article/sass-line-height
+@function unitless-line-height($font-size, $line-height) {
+  @return $line-height / $font-size;
+}
+
+// Typography Preset 1
+// 1) 32px size for small screens
+// 2) 40px line-height for small screens
+// 3) 40px size for large screens
+// 4) 48px line-height for large screens
+@mixin typography-preset-1($important: null, $margin: null, $responsive: true) {
+  font-size: $font-size-xl $important; // 3
+  font-weight: $font-weight-light $important;
+  line-height: unitless-line-height(size(5), size(6)) $important; // 4
+  @if $margin == true {
+    margin-bottom: size(3);
+  } @else {
+    margin-bottom: 0;
+  }
+
+  @if $responsive == true {
+    @media screen and (max-width: $bp-med) {
+      font-size: $font-size-large-2 $important; // 1
+      line-height: unitless-line-height(size(4), size(5)) $important; // 2
+    }
+  }
+}
+
+// Typography Preset 1 Bold
+@mixin typography-preset-1--bold(
+  $important: null,
+  $margin: null,
+  $responsive: true
+) {
+  @include typography-preset-1($important, $margin, $responsive);
+  font-weight: $font-weight-semibold $important;
+}
+
+// Typography Preset 2
+// 1) 24px size
+// 2) 32px line-height
+// 3) 32px size
+// 4) 40px line-height
+@mixin typography-preset-2($important: null, $margin: null, $responsive: true) {
+  font-size: $font-size-large-2 $important; // 3
+  font-weight: $font-weight-light $important;
+  line-height: unitless-line-height(size(4), size(5)) $important; // 4
+  @if $margin == true {
+    margin-bottom: size(3);
+  } @else {
+    margin-bottom: 0;
+  }
+
+  @if $responsive == true {
+    @media screen and (max-width: $bp-med) {
+      font-size: $font-size-large $important; // 1
+      line-height: unitless-line-height(size(3), size(4)) $important; //
+    }
+  }
+}
+
+// Typography Preset 2 Bold
+@mixin typography-preset-2--bold(
+  $important: null,
+  $margin: null,
+  $responsive: true
+) {
+  @include typography-preset-2($important, $margin, $responsive);
+  font-weight: $font-weight-semibold $important;
+}
+
+// Typography Preset 3
+// 1) 20px size
+// 2) 24px line-height
+// 3) 24px size
+// 4) 32px line-height
+@mixin typography-preset-3($important: null, $margin: null, $responsive: null) {
+  font-size: $font-size-large $important; // 3
+  font-weight: $font-weight-light $important;
+  line-height: unitless-line-height(size(3), size(4)) $important; // 4
+  @if $margin == true {
+    margin-bottom: size(3);
+  } @else {
+    margin-bottom: 0;
+  }
+
+  @if $responsive == true {
+    @media screen and (max-width: $bp-med) {
+      font-size: $font-size-med-2 $important; // 1
+      line-height: unitless-line-height(size(2.5), size(4)) $important; // 2
+    }
+  }
+}
+
+// Typography Preset 3 Bold
+@mixin typography-preset-3--bold(
+  $important: null,
+  $margin: null,
+  $responsive: null
+) {
+  @include typography-preset-3($important, $margin, $responsive);
+  font-weight: $font-weight-semibold $important;
+}
+
+// Typography Preset 4
+// 1) 16px size
+// 2) 24px line-height
+// 1) 20px size
+// 2) 32px line-height
+@mixin typography-preset-4($important: null, $margin: null, $responsive: null) {
+  font-size: $font-size-med-2 $important; // 3
+  font-weight: $font-weight-light $important;
+  line-height: unitless-line-height(size(2.5), size(4)) $important; // 4
+  @if $margin == true {
+    margin-bottom: size(3);
+  } @else {
+    margin-bottom: 0;
+  }
+
+  @if $responsive == true {
+    @media screen and (max-width: $bp-med) {
+      font-size: $font-size-med $important; // 1
+      line-height: unitless-line-height(size(2), size(3)) $important; // 2
+    }
+  }
+}
+
+// Typography Preset 4 Bold
+@mixin typography-preset-4--bold(
+  $important: null,
+  $margin: null,
+  $responsive: null
+) {
+  @include typography-preset-4($important, $margin, $responsive);
+  font-weight: $font-weight-semibold $important;
+}
+
+// Typography Preset 5
+// 1) 14px size
+// 2) 24px line-height
+// 1) 16px size
+// 2) 24px line-height
+@mixin typography-preset-5($important: null, $margin: null, $responsive: null) {
+  font-size: $font-size-med $important; // 3
+  font-weight: $font-weight-normal $important;
+  line-height: unitless-line-height(size(2), size(3)) $important; // 4
+  @if $margin == true {
+    margin-bottom: size(3);
+  } @else {
+    margin-bottom: 0;
+  }
+
+  @if $responsive == true {
+    @media screen and (max-width: $bp-med) {
+      font-size: $font-size-sm-2 $important; // 1
+      line-height: unitless-line-height(size(2), size(3)) $important; // 2
+    }
+  }
+}
+
+// Typography Preset 5 Bold
+@mixin typography-preset-5--bold(
+  $important: null,
+  $margin: null,
+  $responsive: null
+) {
+  @include typography-preset-5($important, $margin, $responsive);
+  font-weight: $font-weight-semibold $important;
+}
+
+// Typography Preset 6
+// 1) 14px size
+// 2) 24px line-height
+@mixin typography-preset-6($important: null, $margin: null) {
+  font-size: $font-size-sm-2 $important; // 1
+  font-weight: $font-weight-normal $important;
+  line-height: unitless-line-height(size(1.75), size(3)) $important;
+
+  @if $margin == true {
+    margin-bottom: size(3);
+  } @else {
+    margin-bottom: 0;
+  }
+}
+
+// Typography Preset 6 Bold
+@mixin typography-preset-6--bold($important: null, $margin: null) {
+  @include typography-preset-6($important, $margin);
+  font-weight: $font-weight-semibold $important;
+}
+
+// Typography Preset 7
+// 1) 12px size
+// 2) 20px line-height
+@mixin typography-preset-7($important: null) {
+  font-size: $font-size-sm $important; // 1
+  font-weight: $font-weight-light $important;
+  line-height: unitless-line-height(size(1.5), size(2.5)) $important; // 2
+}
+
+// Typography Preset 6 Bold
+@mixin typography-preset-7--bold($important: null) {
+  @include typography-preset-7($important);
+  font-weight: $font-weight-semibold $important;
+}
+
+// Typography Preset 8
+// 1) 14px size
+// 2) 24px line-height
+// 3) 1px letter-spacing
+@mixin typography-preset-8($important: null) {
+  font-size: $font-size-sm-2 $important; // 1
+  font-weight: $font-weight-light $important;
+  line-height: unitless-line-height(size(1.75), size(3)) $important; // 2
+  letter-spacing: size(0.125) $important; // 3
+  text-transform: uppercase $important;
+}
+
+// Typography Preset 8 Bold
+@mixin typography-preset-8--bold($important: null) {
+  @include typography-preset-8($important);
+  font-weight: $font-weight-semibold $important;
+}
+
+//------------------------------------//
+//   #TEXT LINK STYLES
+//------------------------------------//
+
+// Text Link Styles
+
+@mixin text-link() {
+  color: $color-neutral-gray-50;
+  text-decoration: underline;
+  font-weight: normal;
+
+  &:hover {
+    color: $color-brand-blue;
+  }
+
+  &:focus {
+    @include focus;
+  }
+}
+
+//------------------------------------//
+//   #FOCUS
+//------------------------------------//
+
+/**
+ * Visible focus outline for elements on a light background
+ */
+@mixin focus() {
+  outline: $border-width-large solid $color-focus;
+}
+
+/**
+ * Visible focus outline for elements on a dark background
+ */
+@mixin focusInverted() {
+  outline: $border-width-large solid $color-focus-inverted;
+}
+
+/**
+ * Invisible focus outline for elements that need a more visible
+ * focus state for high-contrast mode
+ */
+@mixin focusTransparent() {
+  outline: $border-width-large solid transparent;
+}
+
+//------------------------------------//
+//   #FORMS
+//------------------------------------//
+
+// Text input styles
+@mixin inputStyles() {
+  @include typography-preset-5;
+  font-family: inherit;
+  -webkit-appearance: none;
+  width: 100%;
+  border: $border-width solid $color-form-border;
+  border-radius: $border-radius;
+  outline: none;
+  padding: $spacing-form-input-padding;
+  margin: 0;
+  color: $color-neutral-black;
+  background-color: $color-neutral-white;
+  transition: box-shadow $anim-fade-quick $anim-ease,
+    border-color $anim-fade-quick $anim-ease;
+
+  &:hover,
+  &:focus {
+    border-color: $color-form-border-hover;
+    border-width: $border-width;
+  }
+
+  &:focus {
+    border-color: transparent;
+    box-shadow: inset 0px 0px 0px $border-width-med $color-form-border-focus;
+    color: $color-neutral-black;
+  }
+
+  &::-webkit-input-placeholder {
+    @include placeholderStyles;
+  }
+
+  &::-moz-placeholder {
+    @include placeholderStyles;
+  }
+
+  &:-ms-input-placeholder {
+    @include placeholderStyles;
+  }
+}
+
+// Text input styles
+@mixin inputStylesInverted() {
+  border-color: $color-form-border-inverted;
+  color: $color-neutral-white;
+  background-color: transparent;
+
+  &:hover,
+  &:focus {
+    border-color: $color-form-border-inverted-hover;
+    border-width: $border-width;
+  }
+
+  &:focus {
+    border-color: transparent;
+    box-shadow: inset 0px 0px 0px $border-width-med
+      $color-form-border-inverted-focus;
+    color: $color-neutral-white;
+  }
+
+  &::-webkit-input-placeholder {
+    @include placeholderStylesInverted;
+  }
+
+  &::-moz-placeholder {
+    @include placeholderStylesInverted;
+  }
+
+  &:-ms-input-placeholder {
+    @include placeholderStylesInverted;
+  }
+}
+
+// Legacy codebase overrides
+// 1) Styles meant to override over-aggressive
+@mixin legacyLabelOverrides() {
+  letter-spacing: normal; // 1
+  text-transform: none; // 1
+}
+
+@mixin legacyInputOverrides() {
+  &:focus {
+    color: white;
+  }
+}
+
+// Form label styles
+@mixin labelStyles() {
+  display: inline-block;
+  color: $color-form-label;
+  @include legacyLabelOverrides;
+}
+
+// Form placeholder styles
+@mixin placeholderStyles() {
+  font-style: italic;
+  color: $color-neutral-gray-42;
+}
+
+// Inverted Form placeholder styles
+@mixin placeholderStylesInverted() {
+  font-style: italic;
+  color: $color-neutral-gray-20;
+}
+
+// Form Fieldset styles
+@mixin fieldsetStyles() {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+// Form legend reset styles
+@mixin legendReset() {
+  display: inline-block;
+  padding: 0;
+  border: none;
+}
+
+//------------------------------------//
+//   #VISIBILITY
+//------------------------------------//
+
+// Completely remove from the flow but leave available to screen readers.
+@mixin visuallyHide() {
+  position: absolute !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+}
+
+//------------------------------------//
+//   #BOX STLYES
+//------------------------------------//
+
+// 1) Box styles are for bordered components
+//    that have a b lock
+@mixin boxStyles() {
+  border: $border-width solid $color-box-border;
+  border-radius: $border-radius;
+  padding: $spacing-box-padding;
+}

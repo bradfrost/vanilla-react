@@ -1,39 +1,51 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Logo } from '../Logo/Logo';
-import { PrimaryNav } from '../PrimaryNav/PrimaryNav';
-import { InlineForm } from '../InlineForm/InlineForm';
-import LayoutContainer from '../LayoutContainer/LayoutContainer';
+import Logo from '../Logo';
+import PrimaryNav from '../PrimaryNav';
 import './Header.scss';
 
-export class Header extends Component {
+class Header extends React.Component {
   render() {
-    const { className } = this.props;
-    const componentClassName = classnames('c-header', this.props.joke, {});
+    const { className, children, ...other } = this.props;
 
+    const componentClassName = classnames('cn-c-header', className, {});
     return (
-      <header className={componentClassName} {...this.props}>
-        <LayoutContainer className='c-header__inner'>
-          <Logo href='/' />
-
-          <PrimaryNav navitems={this.props.navitems} />
-
-          <InlineForm
-            method='post'
-            action='#'
-            placeholder='Search the site'
-            cta='Search'
-            id='search-form'
-            label='Search the site'
+      <div className={componentClassName} {...other}>
+        <div className="cn-c-header__inner">
+          <Logo />
+          <PrimaryNav
+            items={[
+              {
+                href: '#',
+                text: 'Nav Item'
+              },
+              {
+                href: '#',
+                text: 'Nav Item'
+              },
+              {
+                href: '#',
+                text: 'Nav Item'
+              }
+            ]}
           />
-        </LayoutContainer>
-      </header>
+          {children}
+        </div>
+      </div>
     );
   }
 }
 
 Header.propTypes = {
+  /**
+   * Child node(s) that can be nested inside component
+   */
   children: PropTypes.node,
-  navitems: PropTypes.array
+  /**
+   * CSS class names that can be appended to the component.
+   */
+  className: PropTypes.string
 };
+
+export default Header;

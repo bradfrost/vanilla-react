@@ -1,46 +1,100 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import './Textarea.scss';
 
-export class Textarea extends Component {
-	render() {
-		return (
-			<textarea
-				className="c-field__control"
-				id={this.props.id}
-				name={this.props.name}
-				placeholder={this.props.placeholder}
-				value={this.props.value}
-				rows={this.props.rows}
-				disabled={this.props.disabled}
-				readOnly={this.props.readOnly}
-				required={this.props.required}
-				aria-describedby={this.props.ariaDescribedBy}
-				aria-labelledby={this.props.ariaLabelledBy}
-				onBlur={this.props.blurAction}
-				onChange={this.props.changeAction}
-			/>
-		);
-	}
+const FOCUSABLE = Symbol('FOCUSABLE');
+
+class Textarea extends React.Component {
+  componentDidUpdate(prevProps) {
+    if (!prevProps.focus && this.props.focus) {
+      this[FOCUSABLE].focus();
+    }
+  }
+
+  render() {
+    const {
+      children,
+      className,
+      id,
+      name,
+      placeholder,
+      rows,
+      disabled,
+      readOnly,
+      required,
+      ariaDescribedBy,
+      ...other
+    } = this.props;
+
+    const componentClassName = classnames('cn-c-textarea', className, {});
+
+    return (
+      <textarea
+        className={componentClassName}
+        id={id}
+        name={name}
+        placeholder={placeholder}
+        rows={rows}
+        disabled={disabled}
+        readOnly={readOnly}
+        required={required}
+        aria-describedby={ariaDescribedBy}
+        ref={ref => (this[FOCUSABLE] = ref)}
+        {...other}
+      >
+        {children}
+      </textarea>
+    );
+  }
 }
 
 Textarea.propTypes = {
-	id: PropTypes.string,
-	name: PropTypes.string,
-	placeholder: PropTypes.string,
-	value: PropTypes.string,
-	rows: PropTypes.number,
-	disabled: PropTypes.bool,
-	readOnly: PropTypes.bool,
-	required: PropTypes.bool,
-	ariaDescribedBy: PropTypes.string,
-	ariaLabelledBy: PropTypes.string,
-	onBlur: PropTypes.func,
-	onChange: PropTypes.func
+  /**
+   * HTML id of the helper text used to describe the component
+   */
+  ariaDescribedBy: PropTypes.string,
+  /**
+   * The text content of the textarea
+   */
+  children: PropTypes.node,
+  /**
+   * CSS class names that can be appended to the component.
+   */
+  className: PropTypes.string,
+  /**
+   * Disables the field and prevents editing the contents
+   */
+  disabled: PropTypes.bool,
+  /**
+   * HTML id for the component
+   */
+  id: PropTypes.string,
+  /**
+   * HTML name attribute for the textarea
+   */
+  name: PropTypes.string,
+  /**
+   * Placeholder attribute for textarea. Note: placeholder should be used sparingly
+   */
+  placeholder: PropTypes.string,
+  /**
+   * Toggles the form control's interactivity. When `readOnly` is set to `true`, the form control is not interactive
+   */
+  readOnly: PropTypes.bool,
+  /**
+   * Indicates that field is required for form to be successfully submitted
+   */
+  required: PropTypes.bool,
+  /**
+   * The number of visible text lines for the control
+   */
+  rows: PropTypes.number
 };
 
 Textarea.defaultProps = {
-	id: "textarea-1",
-	name: "default-textarea",
-	placeholder: "Placeholder",
-	rows: 5
+  disabled: false,
+  rows: 5
 };
+
+export default Textarea;

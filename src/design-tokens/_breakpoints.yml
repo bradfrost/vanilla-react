@@ -1,0 +1,17 @@
+# Breakpoints
+# This file contains all of the breakpoint-related properties
+# used by the design system
+global:
+  category: 'web'
+  type: 'media-query'
+props:
+  bp-small:
+    value: '28em'
+  bp-small-2:
+    value: '35em'
+  bp-med:
+    value: '47em'
+  bp-large:
+    value: '60em'
+  bp-xl:
+    value: '70em'

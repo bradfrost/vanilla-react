@@ -7,9 +7,7 @@ class GridItem extends React.Component {
   render() {
     const { className, children, span, ...other } = this.props;
 
-    const componentClassName = classnames('l-grid__item', className, {
-      'l-grid__item--span-2': span == 2
-    });
+    const componentClassName = classnames('cn-l-grid__item', className, {});
 
     return (
       <div className={componentClassName} {...other}>

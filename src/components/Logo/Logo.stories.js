@@ -1,15 +1,12 @@
-import React from "react";
-import { storiesOf } from "@storybook/react";
+import React from 'react';
+import Logo from './Logo';
 
+export default {
+  title: 'Molecules/Global/Logo',
+  component: Logo
+};
 
-import { Logo } from "./Logo";
+const Template = args => <Logo {...args} />;
 
-import logoimg from "../../images/fpo-120x60.png";
-
-let stories = storiesOf("Molecules/Global/Logo", module);
-
-
-
-stories.add("Default", () => (
-	<Logo href="http://bradfrost.com" src={logoimg} alt="Company Name" />
-));
+export const Default = Template.bind({});
+Default.args = { href: '#' };

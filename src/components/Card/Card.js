@@ -1,35 +1,43 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import './Card.scss';
 
-export class Card extends Component {
+class Card extends React.Component {
   render() {
-    let cardClass = classnames({
-      'c-card': true,
-      'c-card--dark': this.props.theme === 'dark'
+    const { className, children, theme, align, ...other } = this.props;
+
+    const componentClassName = classnames('cn-c-card', className, {
+      'cn-c-card--inverted': theme == 'inverted',
+      'cn-c-card--center': align == 'center'
     });
 
     return (
-      <div className={cardClass}>
-        <header className='c-card__header'>
-          <h3 className='c-card__title'>{this.props.title}</h3>
-          <p className='c-card__description'>f{this.props.description}</p>
-        </header>
-        <div className='c-card__body'>{this.props.children}</div>
+      <div className={componentClassName} {...other}>
+        {children}
       </div>
     );
   }
 }
 
 Card.propTypes = {
-  cardClass: PropTypes.string,
-  title: PropTypes.string,
-  description: PropTypes.string,
-  children: PropTypes.node
+  /**
+   * Align variations for Card
+   * - **center** aligns card contents to the center
+   */
+  align: PropTypes.oneOf(['center']),
+  /**
+   * Child node(s) that can be nested inside component
+   */
+  children: PropTypes.node,
+  /**
+   * CSS class names that can be appended to the component.
+   */
+  className: PropTypes.string,
+  /**
+   * Color theme for the component. "inverted" theme is for use on dark backgrounds
+   */
+  theme: PropTypes.oneOf(['inverted'])
 };
 
-Card.defaultProps = {
-  title: 'Card Title',
-  description: 'This is the card description'
-};
+export default Card;

@@ -6,16 +6,48 @@
 \*------------------------------------*/
 
 /**
- * 1) Navigation within the footer
+ * 1) Navigation within the footer that contains auxiliary links
  */
-.c-footer-nav__list {
+.cn-c-footer-nav {
+  padding: size(1) 0;
+  width: 100%;
+}
+
+/**
+ * Footer nav listItems
+ * 1) Actual list of the footer nav
+ */
+.cn-c-footer-nav__list {
+  @include reset;
+  list-style: none;
   display: flex;
+  flex-wrap: wrap;
+  margin-left: -(size(2));
+  margin-right: -(size(2));
 }
 
-.c-footer-nav__item {
-  margin-right: 2rem;
+/**
+ * Footer nav items
+ * 1) Nav item within the footer nav list
+ */
+.cn-c-footer-nav__item {
+  margin: size(1) size(2);
 }
 
-.c-footer-nav__link {
-  color: $color-neutral-white;
+/**
+ * Footer nav link
+ */
+.cn-c-footer-nav__link {
+  /**
+     * Footer nav link witin footer
+     * 1) Styles placed within footer to differerntiate when displayed by itself on reference site
+     */
+  .cn-c-footer & {
+    color: $color-neutral-white;
+    transition: color $anim-fade-quick $anim-ease;
+
+    &:focus {
+      @include focus;
+    }
+  }
 }

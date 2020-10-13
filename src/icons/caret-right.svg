@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="28px" viewBox="0 0 18 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Caret Right</title>
+    <g stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g transform="translate(9.000000, 14.000000) rotate(-90.000000) translate(-9.000000, -14.000000) translate(-5.000000, 5.000000)" fill-rule="nonzero">
+            <polygon id="Path" points="25.602 1.133 27.867 3.398 14.133 17.133 0.133 3.133 2.398 0.867 14.133 12.602 25.603 1.132"></polygon>
+        </g>
+    </g>
+</svg>

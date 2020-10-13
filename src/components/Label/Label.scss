@@ -1,0 +1,46 @@
+@import '../../css/scss/abstracts/variables.scss';
+@import '../../css/scss/abstracts/mixins.scss';
+
+/*------------------------------------*\
+    #LABEL
+\*------------------------------------*/
+
+/**
+ * Label
+ * 1) Labels can sometimes be marked up as legends for field groups (i.e. radio field)
+ */
+.cn-c-label {
+  @include labelStyles;
+  @include typography-preset-5;
+  margin-bottom: $spacing-form-label-block;
+}
+
+/**
+ * Label flag
+ * 1) A flag to mark whether or not a field is required
+ *    or optional. Currently a flag is only present
+ *    for optional fields
+ */
+.cn-c-label__flag {
+  font-size: $font-size-sm-2;
+  font-weight: $font-weight-normal;
+  color: $color-neutral-gray-60;
+}
+
+/**
+ * Label after
+ * 1) An empty slot for additional element to appear
+ *    to the right of the label text. Typically used
+ *    to present tooltips by the labels
+ * 2) Media query is for IE 11 browser only for label after alignment
+ */
+.cn-c-label__after {
+  display: inline-block;
+  position: relative;
+  top: 3px;
+  margin-left: size(1);
+
+  @media all and (-ms-high-contrast: none) {
+    top: -6px;
+  }
+}

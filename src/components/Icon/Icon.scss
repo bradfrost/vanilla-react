@@ -1,12 +1,40 @@
+@import '../../css/scss/abstracts/variables';
+@import '../../css/scss/abstracts/mixins';
+
 /*------------------------------------*\
     #ICON
 \*------------------------------------*/
 
 /**
- * 1) Small image that represents functionality
+ * 1) Small graphic that represents functionality
  */
-.c-icon {
+.cn-c-icon {
   display: block;
-  height: 1rem;
-  width: 1rem;
+  height: size(2);
+  width: size(2);
+
+  /**
+   * Icon within text passage
+   * 1) Places icon inline with text around it
+   */
+  .cn-c-text-passage & {
+    display: inline; /* 1 */
+  }
+
+  /**
+   * Icon within small text passage
+   * 1) Sets icon to smaller height and width to match font size
+   */
+  .cn-c-text-passage--small & {
+    height: 12px; /* 1 */
+    width: 12px; /* 1 */
+  }
+}
+
+/**
+   * Inverted icon
+   * 1) Sets icon to smaller height and width to match font size
+   */
+.cn-c-icon--inverted {
+  fill: $color-neutral-white;
 }

@@ -1,116 +1,217 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Field } from '../Field/Field';
-import { TextInput } from '../TextInput/TextInput';
+import classnames from 'classnames';
+import shortid from 'shortid';
+import Label from '../Label';
+import TextInput from '../TextInput';
+import Icon from '../Icon';
+import Button from '../Button';
+import FieldNote from '../FieldNote';
 import './TextField.scss';
 
-export class TextField extends Component {
+class TextField extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      inputValue: '',
-      valid: true,
-      fieldNote: this.props.fieldNote,
-      clicked: true
+      value: this.props.value ? this.props.value : ''
     };
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleOnBlur = this.handleOnBlur.bind(this);
+
+    this.id = this.props.id || shortid.generate();
+    if (this.props.fieldNote) {
+      this.ariaDescribedBy = this.props.ariaDescribedBy || shortid.generate();
+    }
+
+    this.onChange = this.onChange.bind(this);
   }
 
-  validateEmail(inputValue) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(inputValue);
-  }
-
-  /**
-   * Validates input field on blur
-   */
-  handleOnBlur(e) {
-    this.setState(state => ({
-      inputInvalid: !state.inputInvalid
-    }));
-  }
-
-  /**
-   * Validates email field on change
-   */
-  handleEmailChange(e) {
-    const inputValue = e.target.value;
-    const emailValid = this.validateEmail(inputValue);
-
-    this.setState({
-      inputValue: e.target.value,
-      valid: emailValid
-    });
+  onChange(e) {
+    if (this.props.onChange) {
+      this.props.onChange(e);
+      return;
+    }
+    this.setState({ value: e.target.value });
   }
 
   render() {
-    let fieldClass = 'c-text-field';
-    const { valid, fieldNote, inputValue } = this.state;
+    const {
+      className,
+      type,
+      id,
+      required,
+      label,
+      disabled,
+      fieldNote,
+      fieldButtonText,
+      fieldButtonScreenReaderText,
+      fieldButtonOnClick,
+      focus,
+      name,
+      placeholder,
+      readOnly,
+      iconName,
+      onChange,
+      hideLabel,
+      maxLength,
+      inputMode,
+      characterSize,
+      ariaDescribedBy,
+      isError,
+      optionalLabel,
+      requiredLabel,
+      ...other
+    } = this.props;
 
-    // If type of input is email and email not valid
-    if (this.props.type == 'email' && !valid) {
-      fieldClass += ' has-error';
-      this.state.fieldNote = this.props.title;
-    }
-
-    // Return to original
-    else {
-      this.state.fieldNote = this.props.fieldNote;
-    }
-
-    // If input isn't valid, the field is required, and the inputValue is empty
-    if (
-      this.state.inputInvalid &&
-      this.props.required &&
-      this.state.inputValue == ''
-    ) {
-      fieldClass += ' has-error';
-      this.state.fieldNote =
-        'This is a required field. Please fill in the proper information';
-    }
+    let componentClassName = classnames('cn-c-textfield', className, {
+      'cn-is-error': isError,
+      'cn-is-disabled': disabled
+    });
 
     return (
-      <Field
-        className={fieldClass}
-        id={this.props.id}
-        ariaDescribedBy={this.props.ariaDescribedBy}
-        ariaLabelledBy={this.props.ariaLabelledBy}
-        label={this.props.label}
-        hasError={this.props.hasError}
-        disabled={this.props.disabled}
-        required={this.props.required}
-        fieldNote={this.state.fieldNote}
-        title={this.props.title}
-      >
-        <TextInput
-          type={this.props.type}
-          id={this.props.id}
-          name={this.props.name}
-          placeholder={this.props.placeholder}
-          disabled={this.props.disabled}
-          readOnly={this.props.readOnly}
-          required={this.props.required}
-          ariaDescribedBy={this.props.ariaDescribedBy}
-          ariaLabelledBy={this.props.ariaLabelledBy}
-          action={this.handleEmailChange}
-          blurAction={this.handleOnBlur}
+      <div className={componentClassName}>
+        <Label
+          className='cn-c-textfield__label'
+          htmlFor={this.id}
+          text={label}
+          hideLabel={hideLabel}
+          required={required}
+          optionalLabel={optionalLabel}
+          requiredLabel={requiredLabel}
         />
-      </Field>
+
+        <div className='cn-c-textfield__body'>
+          <TextInput
+            className='cn-c-textfield__input'
+            type={type}
+            id={this.id}
+            name={name}
+            value={this.state.value}
+            placeholder={placeholder}
+            onChange={this.onChange}
+            size={characterSize}
+            inputMode={inputMode}
+            maxLength={maxLength}
+            disabled={disabled}
+            readOnly={readOnly}
+            required={required}
+            ariaDescribedBy={this.ariaDescribedBy}
+            aria-invalid={!!isError}
+            {...other}
+          />
+          {fieldButtonText && (
+            <Button
+              className='cn-c-textfield__btn'
+              type='button'
+              text={fieldButtonText}
+              screenReaderText={fieldButtonScreenReaderText}
+              variant='bare'
+              size='small'
+              onClick={fieldButtonOnClick}
+            />
+          )}
+          {iconName && (
+            <Icon className='cn-c-textfield__icon' name={iconName} />
+          )}
+        </div>
+        {fieldNote && (
+          <FieldNote className='cn-c-textfield__note' id={this.ariaDescribedBy}>
+            {fieldNote}
+          </FieldNote>
+        )}
+      </div>
     );
   }
 }
 
 TextField.propTypes = {
-  fieldClass: PropTypes.string,
-  id: PropTypes.string,
-  label: PropTypes.string,
-  hasError: PropTypes.bool,
+  /**
+   * Aria-describedby id string
+   */
+  ariaDescribedBy: PropTypes.string,
+  /**
+   * Size of the characters for the text input
+   */
+  characterSize: PropTypes.number,
+  /**
+   * CSS class names that can be appended to the component.
+   */
+  className: PropTypes.string,
+  /**
+   * Disables the field and prevents editing the contents
+   */
   disabled: PropTypes.bool,
-  required: PropTypes.bool,
+  /**
+   * FieldNote
+   * Used as helper text or error message
+   */
   fieldNote: PropTypes.string,
-  title: PropTypes.string,
+  /**
+   * Toggles the visibility of the label. If hidden, the label text will still be accessible to assistive technologies
+   */
+  hideLabel: PropTypes.bool,
+  /**
+   * Screen reader text used for the button alongside the input field (i.e. show/hide password button)
+   */
+  fieldButtonScreenReaderText: PropTypes.string,
+  /**
+   * Text used for the button alongside the input field (i.e. show/hide password button)
+   */
+  fieldButtonText: PropTypes.string,
+  /**
+   * Function passed down from higher level component to trigger on click function of text field button
+   */
+  fieldButtonOnClick: PropTypes.func,
+  /**
+   * Name of SVG icon (i.e. caret-down, minus, warning)
+   */
+  iconName: PropTypes.string,
+  /**
+   * HTML id for the component
+   */
+  id: PropTypes.string,
+  /**
+   * Gives a hint as to the type of data needed for text input
+   */
+  inputMode: PropTypes.string,
+  /**
+   * HTML label text
+   */
+  label: PropTypes.string,
+  /**
+   * Max number of characters for the text input
+   */
+  maxLength: PropTypes.number,
+  /**
+   * HTML name attribute for the input
+   */
+  name: PropTypes.string,
+  /**
+   * Function that runs on change of the input
+   */
+  onChange: PropTypes.func,
+  /**
+   * String for the optional label. By default it is '(optional)'
+   */
+  optionalLabel: PropTypes.string,
+  /**
+   * Placeholder attribute for input. Note: placeholder should be used sparingly
+   */
+  placeholder: PropTypes.string,
+  /**
+   * Toggles the form control's interactivity. When `readOnly` is set to `true`, the form control is not interactive
+   */
+  readOnly: PropTypes.bool,
+  /**
+   * Indicates that field is required for form to be successfully submitted
+   */
+  required: PropTypes.bool,
+  /**
+   * String for the required label to add additional information if needed.
+   */
+  requiredLabel: PropTypes.string,
+  /**
+   * HTML type attribute, allowing switching between text, password, and other HTML5 input field types
+   */
   type: PropTypes.oneOf([
     'text',
     'password',
@@ -126,19 +227,14 @@ TextField.propTypes = {
     'search',
     'tel'
   ]),
-  name: PropTypes.string,
-  placeholder: PropTypes.string,
-  readOnly: PropTypes.bool,
-  ariaDescribedBy: PropTypes.string,
-  ariaLabelledBy: PropTypes.string,
-  handleEmailChange: PropTypes.func,
-  handleOnBlur: PropTypes.func
+  /**
+   * Value passed down from higher levels for initial state
+   */
+  value: PropTypes.string
 };
 
 TextField.defaultProps = {
-  id: 'text-field-1',
-  label: 'Label',
-  fieldNote: 'This is a fieldnote.',
-  ariaDescribedBy: 'text-field-1',
-  ariaLabelledBy: 'text-field-1-label'
+  required: true
 };
+
+export default TextField;

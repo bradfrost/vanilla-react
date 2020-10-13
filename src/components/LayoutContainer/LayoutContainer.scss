@@ -10,12 +10,20 @@
  * 1) Caps the width of the content to the maximum width
  *    and centers the container
  * 2) The layout container can be combined with other
- *    component-specific classes (i.e. atm-c-header__inner)
+ *    component-specific classes (i.e. cn-c-header__inner)
  */
-.l-container {
-  max-width: $l-max-width;
+.cn-l-container {
+  max-width: calc(#{$l-max-width} + #{size(6)}); /* 3 */
   margin-left: auto;
   margin-right: auto;
-  padding-left: $spacing;
-  padding-right: $spacing;
+  padding-left: size(3);
+  padding-right: size(3);
+}
+
+/**
+ * Layout container narrow
+ * 1) Used for text passage heavy pages where content needs to be readable, but also centered
+ */
+.cn-l-container--narrow {
+  max-width: $bp-med;
 }

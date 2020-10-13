@@ -1,0 +1,46 @@
+/*------------------------------------*\
+    #ICON GRID
+\*------------------------------------*/
+
+/**
+ * 1) The icon grid is not for production and is meant solely to display
+ *    a grid of icons within the pattern library. THerefore, it does not
+ *    follow coding conventions
+ */
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-gap: 1rem;
+}
+
+.icon-grid__item {
+  text-align: center;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border-radius: 4px;
+  border: 1px solid #cccccc;
+  padding: 8px;
+  height: 5.5rem;
+}
+
+.icon-grid svg {
+  height: 16px;
+  width: 16px;
+  height: 24px;
+  width: 24px;
+  margin: 0 auto 1rem auto;
+}
+
+.icon-grid__text {
+  display: block;
+  font-size: 0.75rem;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkljb25HcmlkLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7dUNBRXVDOztBQUV2Qzs7OztFQUlFOztBQUVGO0lBQ0ksYUFBQTtJQUFBLDREQUFhO0lBQ2IsY0FBQTtBQUVKOztBQUNBO0lBRUksa0JBQWtCO0lBQXRCLG9CQUFBO0lBQUEsYUFBQTtJQUlJLDRCQUhBO0lBR0EsNkJBSEE7WUFHQSxzQkFIQTtJQUtBLHlCQUpBO1lBSUEsbUJBSkE7SUFNQSx3QkFMQTtZQUtBLHVCQUxBO0lBQ0osa0JBQUE7SUFFSSx5QkFBeUI7SUFBN0IsWUFBQTtJQUNJLGNBQWE7QUFFakI7O0FBRUE7SUFBSSxZQUFBO0lBQ0EsV0FBQTtJQUNBLFlBQUE7SUFDSixXQUFBO0lBT0ksd0JBQXdCO0FBTDVCOztBQVFBO0lBTEEsY0FBQTtJQU9JLGtCQUFrQjtBQUN0QiIsImZpbGUiOiJJY29uR3JpZC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSpcXFxuwqDCoMKgICNJQ09OIEdSSURcblxcKi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSovXG5cbi8qKlxuICogMSkgVGhlIGljb24gZ3JpZCBpcyBub3QgZm9yIHByb2R1Y3Rpb24gYW5kIGlzIG1lYW50IHNvbGVseSB0byBkaXNwbGF5XG4gKiAgICBhIGdyaWQgb2YgaWNvbnMgd2l0aGluIHRoZSBwYXR0ZXJuIGxpYnJhcnkuIFRIZXJlZm9yZSwgaXQgZG9lcyBub3RcbiAqICAgIGZvbGxvdyBjb2RpbmcgY29udmVudGlvbnMgXG4gKi9cblxuLmljb24tZ3JpZCB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBsaXN0LXN0eWxlOiBub25lO1xuICAgIG1hcmdpbjogMDtcbiAgICBwYWRkaW5nOiAwO1xufVxuXG4uaWNvbi1ncmlkIHN2ZyB7XG4gICAgaGVpZ2h0OiAxNnB4O1xuICAgIHdpZHRoOiAxNnB4O1xuICAgIG1hcmdpbjogMCBhdXRvIDFyZW0gYXV0bztcbn1cblxuLmljb24tZ3JpZF9faXRlbSB7XG4gICAgd2lkdGg6IDUuNXJlbTtcbiAgICBoZWlnaHQ6IDUuNXJlbTtcbiAgICBiYWNrZ3JvdW5kOiAjZjVmNWY1O1xuICAgIGJvcmRlcjogMXB4IHNvbGlkICNjY2NjY2Q7XG4gICAgcGFkZGluZzogMC41cmVtO1xuICAgIG1hcmdpbjogMCAxcmVtIDFyZW0gMDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5pY29uLWdyaWRfX3RleHQge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICAgIGZvbnQtc2l6ZTogMC44NXJlbTtcbn1cbiJdfQ== */

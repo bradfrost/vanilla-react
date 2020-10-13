@@ -1,0 +1,137 @@
+@import '../../css/scss/abstracts/variables';
+@import '../../css/scss/abstracts/mixins';
+
+/*------------------------------------*\
+    #CHECKBOX
+\*------------------------------------*/
+
+/**
+ * A custom individual checkbox control
+ * 1) Outer wrapper div for custom control
+ * 2) Determines width and height of the control
+ * 3) Prevents control from being "squished" in 
+ *    a flexbox parent
+ */
+.cn-c-checkbox {
+  position: relative;
+  display: block;
+  width: size(2.5); /* 2 */
+  height: size(2.5); /* 2 */
+  flex: none; /* 3 */
+}
+
+/**
+ * Checkbox control input
+ * 1) Make control dimensions same as outer container
+ * 2) Hide native form controls
+ */
+.cn-c-checkbox__input {
+  position: absolute;
+  top: 0; /* 1 */
+  right: 0; /* 1 */
+  bottom: 0; /* 1 */
+  left: 0; /* 1 */
+  z-index: 4;
+  display: block;
+  width: 100%; /* 1 */
+  height: 100%; /* 1 */
+  cursor: pointer;
+  opacity: 0; /* 2 */
+
+  /**
+   * Disabled checkbox input
+   */
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+/**
+ * Custom checkbox
+ * 1) Make control dimensions same as outer container
+ */
+.cn-c-checkbox__custom-check {
+  position: absolute;
+  top: 0; /* 1 */
+  right: 0; /* 1 */
+  bottom: 0; /* 1 */
+  left: 0; /* 1 */
+  z-index: 1;
+
+  /**
+   * Custom checkbox background 
+   * 1) Make control dimensions same as outer container
+   * 2) Stack background behind checkbox foreground
+   */
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0; /* 1 */
+    right: 0; /* 1 */
+    bottom: 0; /* 1 */
+    left: 0; /* 1 */
+    z-index: 1; /* 2 */
+    display: block;
+    border: $border-width-med solid $color-brand-blue;
+    border-radius: $border-radius;
+    background: $color-neutral-white;
+
+    /**
+     *  Custom checkbox background inside of focused control 
+     */
+    .cn-c-checkbox__input:focus + & {
+      box-shadow: 0 0 0 $border-width-large $color-focus;
+      @include focusTransparent;
+    }
+    /**
+     *  Custom checkbox background inside of disabled control 
+     */
+    .cn-c-checkbox__input:disabled + & {
+      border-color: $color-neutral-gray-20;
+      cursor: not-allowed;
+    }
+
+    /**
+     *  Custom checkbox background inside of checked control 
+     */
+    .cn-c-checkbox__input:checked + & {
+      background: $color-brand-blue;
+    }
+
+    .cn-c-checkbox--inverted & {
+      background-color: transparent;
+      border-color: $color-form-label-inverted;
+    }
+  }
+
+  /**
+   * Custom checkbox checkmark
+   * 1) Position checkmark in center of box
+   * 2) Draw custom checkmark
+   * 3) Hide checkmark based by default
+   */
+  &:after {
+    content: '';
+    position: absolute;
+    top: 6px; /* 1 */
+    left: 5px; /* 1 */
+    z-index: 2;
+    display: block;
+    width: 9px;
+    height: 3px;
+    border: solid; /* 2 */
+    border-width: 0 0 2px 2px; /* 2 */
+    border-color: $color-neutral-white; /* 2 */
+    border-top-color: transparent; /* 2 */
+    transform: rotate(-45deg); /* 2 */
+    opacity: 0; /* 3 */
+
+    /**
+     * Actual checkbox of the checked input
+     * 1) Hide checkmark based on if input is checked
+     */
+    .cn-c-checkbox__input:checked + & {
+      opacity: 1; /* 1 */
+    }
+  }
+}

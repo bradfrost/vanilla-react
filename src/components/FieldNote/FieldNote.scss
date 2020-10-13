@@ -1,0 +1,37 @@
+@import '../../css/scss/abstracts/variables.scss';
+@import '../../css/scss/abstracts/mixins.scss';
+
+/*------------------------------------*\
+    #FIELD NOTE
+\*------------------------------------*/
+
+/**
+ * Field note
+ */
+.cn-c-field-note {
+  display: inline-block;
+  @include typography-preset-7;
+  margin-top: size(0.5);
+  color: $color-neutral-gray-60;
+
+  /**
+     * Field note inside a field that has an error 
+     */
+  .cn-is-error & {
+    color: $color-utility-error;
+  }
+}
+
+/**
+  * Fieldnote icon
+  * 1) Change color to error utility
+  */
+.cn-c-field-note__icon {
+  .cn-is-error & {
+    display: inline-block;
+    margin-right: size(1);
+    fill: $color-utility-error; /* 1 */
+    position: relative;
+    top: 3px;
+  }
+}

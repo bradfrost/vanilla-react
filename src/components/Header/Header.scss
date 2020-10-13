@@ -6,17 +6,15 @@
 \*------------------------------------*/
 
 /**
- * Global block at the top of each page containing the navigation, logo, and other potential utility nav
+ * 1) 
  */
-.c-header {
-  background: #ddd;
-  padding: 1rem 0;
-  margin-bottom: $spacing;
+.cn-c-header {
+  background-color: $color-neutral-gray-10;
+  padding: size(2);
 }
 
-.c-header__inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-flow: column;
-  gap: $spacing;
+.cn-c-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

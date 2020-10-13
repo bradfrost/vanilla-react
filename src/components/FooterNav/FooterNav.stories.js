@@ -1,12 +1,31 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import FooterNav from './FooterNav';
 
-import { FooterNav } from './FooterNav';
+export default {
+  title: 'Molecules/Navigation/FooterNav',
+  component: FooterNav
+};
 
-let stories = storiesOf('Molecules/Navigation/FooterNav', module);
+const Template = args => <FooterNav {...args} />;
 
-stories.add('Default', () => (
-  <div style={{ backgroundColor: '#333333' }}>
-    <FooterNav />
-  </div>
-));
+export const Default = Template.bind({});
+Default.args = {
+  items: [
+    {
+      href: '#',
+      text: 'Footer Nav Item 1'
+    },
+    {
+      href: '#',
+      text: 'Footer Nav Item 2'
+    },
+    {
+      href: '#',
+      text: 'Footer Nav Item 3'
+    },
+    {
+      href: '#',
+      text: 'Footer Nav Item 4'
+    }
+  ]
+};

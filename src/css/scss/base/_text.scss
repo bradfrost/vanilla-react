@@ -3,81 +3,14 @@
 \*------------------------------------*/
 
 /**
- * Paragraph base styles
+ * 1) Base styles relating to general text
  */
-p {
-	margin-bottom: $spacing;
-}
 
 /**
- * Blockquote base styles
+ * Strong and b tag base styles
+ * 1) Set to semibold since bold is too heavy
  */
-blockquote {
-	font-style: italic;
-	border-left: 1px solid $color-neutral-gray-50;
-	color: $color-neutral-gray-50;
-	padding-left: 1rem;
-	margin-bottom: $spacing;
-}
-
-/**
- * Horizontal rule base styles
- */
-hr {
-	border: 0;
-	height: 1px;
-	background: $color-neutral-gray-13;
-	margin: 1rem 0;
-}
-
-/**
- * Selection styles
- */
-::-moz-selection {
-	color: #131313;
-	background: #dddddd; /* Gecko Browsers */
-}
-
-::selection {
-	color: #131313;
-	background: #dddddd; /* WebKit/Blink Browsers */
-}
-
-/**
- * Code base styles
- */
-code {
-	display: inline-block;
-	background: $color-neutral-gray-02;
-	border: 1px solid $color-neutral-gray-13;
-	padding: 0.2rem 0.5rem;
-	line-height: 1.2;
-	font-size: 0.85rem;
-}
-
-/**
- * Preformatted text base styles
- */
-pre {
-	background: $color-neutral-gray-02;
-	border: 1px solid $color-neutral-gray-13;
-	font-size: $font-size-med;
-	padding: 1rem;
-	overflow-x: auto;
-
-	/**
-	 * Remove border from code within preformatted text block
-	 */
-	code {
-		border: 0;
-	}
-}
-
-/**
- * Code with languages associated with them
- * 1) Override Prism sysles for code blocks with language
- */
-code[class*="language-"],
-pre[class*="language-"] {
-	font-family: monospace !important;
+strong,
+b {
+  font-weight: $font-weight-semibold;
 }

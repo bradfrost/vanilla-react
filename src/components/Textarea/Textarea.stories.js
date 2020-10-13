@@ -1,11 +1,12 @@
-import React, { PropTypes } from "react";
-import { storiesOf } from "@storybook/react";
+import React from 'react';
+import Textarea from './Textarea';
 
+export default {
+  title: 'Atoms/Forms/Textarea',
+  component: Textarea
+};
 
-import { Textarea } from "./Textarea";
+const Template = args => <Textarea {...args} />;
 
-let stories = storiesOf("Atoms/Forms/Textarea", module);
-
-
-
-stories.add("Default", () => <Textarea />);
+export const Default = Template.bind({});
+Default.args = {};

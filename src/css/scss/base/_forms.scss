@@ -10,40 +10,42 @@
  * Input placeholder text base styles
  */
 ::-webkit-input-placeholder {
-	color: $color-neutral-gray-50;
+  font-style: italic;
+  color: $color-neutral-gray-42;
 }
 
 ::-moz-placeholder {
-	color: $color-neutral-gray-50;
+  font-style: italic;
+  color: $color-neutral-gray-42;
 }
 
 :-ms-input-placeholder {
-	color: $color-neutral-gray-50;
+  font-style: italic;
+  color: $color-neutral-gray-42;
 }
 
 /**
  * Fieldset base styles
  */
 fieldset {
-	border: 0;
-	padding: 0;
-	margin: 0;
+  border: 0;
+  padding: size(0);
+  margin: size(0);
 }
 
 /**
  * Legend base styles
  */
 legend {
-	margin-bottom: 0.25rem;
+  margin-bottom: size(0.5);
 }
 
 /**
  * Label base styles
  */
 label {
-	display: block;
-	padding-bottom: 0.25rem;
-	color: $color-neutral-gray-93;
+  display: block;
+  color: $color-brand-blue;
 }
 
 /**
@@ -53,16 +55,29 @@ button,
 input,
 select,
 textarea {
-	font-family: inherit;
-	font-size: $font-size-med;
-	margin: 0;
+  @include typography-preset-4;
+  font-family: inherit;
+  margin: size(0);
 }
 
 /**
  * Text area base styles
  */
 textarea {
-	resize: none;
+  resize: none;
+  border: none;
+  transition: box-shadow $anim-fade-quick $anim-ease,
+    border-color $anim-fade-quick $anim-ease;
+  outline: none;
+
+  &:hover {
+    border-color: $color-neutral-gray-50;
+  }
+
+  &:focus {
+    border-color: transparent;
+    box-shadow: inset 0px 0px 0px 2px $color-brand-blue;
+  }
 }
 
 /**
@@ -70,61 +85,61 @@ textarea {
  */
 input,
 textarea {
-	width: 100%;
-	padding: 0.5rem;
-	border: $border-thickness solid $color-neutral-gray-73;
-	background: $color-neutral-white;
-
-	&:focus {
-		border-color: $color-neutral-gray-93;
-	}
+  width: 100%;
+  padding: size(1);
+  background-color: transparent;
 }
 
 /**
  * Remove webkit appearance styles from these elements
  */
-input[type="text"],
-input[type="search"],
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration,
-input[type="url"],
-input[type="number"],
+input[type='text'],
+input[type='search'],
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-decoration,
+input[type='url'],
+input[type='email'],
+input[type='search'],
+input[type='password'],
+input[type='number'],
+select,
 textarea {
-	-webkit-appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  border: $border-width solid $color-neutral-gray-20;
+  border-radius: $border-radius;
+  outline: none;
+  padding-top: size(1);
+  padding-right: size(0);
+  padding-bottom: size(1);
+  padding-left: size(2);
+  color: $color-neutral-black;
+  transition: box-shadow $anim-fade-quick $anim-ease,
+    border-color $anim-fade-quick $anim-ease;
+
+  &:hover {
+    border-color: $color-neutral-gray-50;
+  }
+
+  &:focus {
+    border-color: transparent;
+    box-shadow: inset 0px 0px 0px 2px $color-brand-blue;
+  }
+}
+
+/**
+ * 1) Make room for select dropdown icon 
+ */
+select {
+  padding-right: size(4); /* 1 */
 }
 
 /**
  * Checkbox and radio button base styles
  */
-input[type="checkbox"],
-input[type="radio"] {
-	width: auto;
-	margin-right: 0.3rem;
-	border-color: $color-neutral-gray-73;
-}
-
-/**
- * Search input base styles
- */
-input[type="search"] {
-	-webkit-appearance: none;
-	border-radius: 0;
-}
-
-/**
- * Select
- * 1) Remove default styling
- */
-select {
-	display: block;
-	font-size: $font-size-med;
-	width: 100%;
-	border: $border-thickness solid $color-neutral-gray-73;
-	padding: 0.5rem;
-	background: $color-neutral-white;
-	color: $color-neutral-gray-93;
-
-	&:focus {
-		border-color: $color-neutral-gray-93;
-	}
+input[type='checkbox'],
+input[type='radio'] {
+  &:focus {
+    @include focus;
+  }
 }

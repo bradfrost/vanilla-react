@@ -1,0 +1,19 @@
+@import '../../css/scss/abstracts/variables.scss';
+@import '../../css/scss/abstracts/mixins.scss';
+/*------------------------------------*\
+    #TEXT INPUT
+\*------------------------------------*/
+
+/**
+ * Default text input styles 
+ */
+.cn-c-text-input {
+  @include inputStyles;
+}
+
+/**
+ * Inverted text input styles 
+ */
+.cn-c-text-input--inverted {
+  @include inputStylesInverted;
+}

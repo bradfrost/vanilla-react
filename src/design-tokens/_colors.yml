@@ -1,0 +1,49 @@
+# Colors
+# This file contains all of the color-related properties
+# used by the design system
+global:
+  category: 'web'
+  type: 'color'
+props:
+  color-brand-blue:
+    value: &brand-blue '#0000ff'
+    type: web
+  color-neutral-white:
+    value: &white '#ffffff'
+    type: web
+  color-neutral-gray-05:
+    value: &gray-05 '#f2f2f2'
+    type: web
+  color-neutral-gray-10:
+    value: &gray-10 '#e6e6e6'
+    type: web
+  color-neutral-gray-20:
+    value: &gray-20 '#cccccc'
+    type: web
+  color-neutral-gray-42:
+    value: &gray-42 '#949494'
+    type: web
+  color-neutral-gray-50:
+    value: &gray-50 '#808080'
+    type: web
+  color-neutral-gray-60:
+    value: &gray-60 '#666666'
+    type: web
+  color-neutral-gray-80:
+    value: &gray-80 '#333333'
+    type: web
+  color-neutral-black:
+    value: &black '#000000'
+    type: web
+  color-utility-info:
+    value: *brand-blue
+    type: web
+  color-utility-error:
+    value: '#d50032'
+    type: web
+  color-utility-success:
+    value: '#44883e'
+    type: web
+  color-utility-warning:
+    value: '#ffc658'
+    type: web

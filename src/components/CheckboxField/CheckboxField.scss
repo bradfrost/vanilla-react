@@ -1,12 +1,159 @@
-@import '../../css/scss/abstracts/variables';
-@import '../../css/scss/abstracts/mixins';
+@import '../../css/scss/abstracts/_variables.scss';
+@import '../../css/scss/abstracts/_mixins.scss';
 
 /*------------------------------------*\
     #CHECKBOX FIELD
 \*------------------------------------*/
 
 /**
- * 1) 
+ * 1) Consists of a label, form control, and an optional note about the field.
  */
-.c-checkbox-field {
+.cn-c-checkbox-field {
+  @include fieldsetStyles;
+  position: relative;
+}
+
+/**
+ * Inverted Checkbox Field
+ */
+.cn-c-checkbox-field--inverted {
+  color: $color-form-label-inverted;
+}
+
+/**
+ * Checkbox field body
+ * 1) Contains the list of checkbox options
+ */
+.cn-c-checkbox-field__body {
+  position: relative;
+  margin-bottom: size(0.5);
+}
+
+/**
+ * Checkbox field list
+ */
+.cn-c-checkbox-field__list {
+  @include reset;
+  list-style: none;
+
+  /**
+   * Checkbox field list inside inline variant
+   * 1) place items beside each other
+   */
+  .cn-c-checkbox-field--inline & {
+    display: flex; /* 1 */
+  }
+
+  /**
+   * Checkbox field list inside inline-wrap variant
+   * 1) place items beside each other
+   */
+  .cn-c-checkbox-field--inline-wrap & {
+    display: flex; /* 1 */
+    flex-wrap: wrap;
+  }
+}
+
+/**
+ * Checkbox field list item
+ * 1) Place control and label beside each other
+ * 2) Spacing between items
+ */
+.cn-c-checkbox-field__item {
+  display: flex; /* 1 */
+  margin-bottom: size(2); /* 2 */
+
+  /**
+   * Last checkbox field item
+   */
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  /**
+   * Checkbox field list item inside inline variant 
+   */
+  .cn-c-checkbox-field--inline & {
+    margin-bottom: 0;
+    margin-right: size(2); /* 2 */
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+
+  /**
+   * Checkbox field list item inside inline variant 
+   */
+  .cn-c-checkbox-field--inline-wrap & {
+    margin-bottom: 0;
+    margin-right: size(2); /* 2 */
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
+/**
+ * Checkbox field item label 
+ */
+.cn-c-checkbox-field__item-label {
+  @include typography-preset-6;
+  @include legacyLabelOverrides;
+  color: $color-form-label;
+  padding-left: size(1);
+
+  /**
+   * Checkbox field item label within disabled checkbox field
+   */
+  .cn-is-disabled & {
+    color: $color-neutral-gray-42;
+    cursor: not-allowed;
+  }
+
+  /**
+   * Inverted checkbox field
+   */
+  .cn-c-checkbox-field__item--inverted & {
+    color: $color-form-label-inverted;
+  }
+}
+
+/**
+ * Checkbox field control
+ * 1) The actual checkbox form control
+ * 2) Align control to label
+ */
+.cn-c-checkbox-field__item-control {
+  position: relative;
+  top: 2px;
+}
+
+/**
+ * Checkbox field note
+ */
+.cn-c-checkbox-field__note {
+  /**
+   * Checkbox field note within error state
+   * 1) Set to display flex to place icon next to the fieldnote
+   */
+  .cn-is-error & {
+    display: flex;
+  }
+}
+
+/**
+ * Checkbox field note icon
+ * 1) Icon prepended to fieldnote for error states, etc.
+ */
+.cn-c-checkbox-field__note-icon {
+  /**
+   * Checkbox field note icon within error state
+   * 1) Change color to error utility
+   */
+  .cn-is-error & {
+    margin-right: size(1);
+    fill: $color-utility-error; /* 1 */
+  }
 }

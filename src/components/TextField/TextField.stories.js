@@ -1,73 +1,81 @@
-import React from "react";
-import { storiesOf } from "@storybook/react";
+import React from 'react';
+import TextField from './TextField';
+import TextFieldExample from './TextFieldExample';
 
+export default {
+  title: 'Molecules/Forms/TextField',
+  component: TextField
+};
 
-import { TextField } from "./TextField";
+const Template = args => <TextField {...args} />;
 
-let stories = storiesOf("Molecules/Forms/TextField", module);
+export const Default = Template.bind({});
+Default.args = {
+  name: 'text-field-1',
+  label: 'Label',
+  type: 'text',
+  title: 'Please enter the proper text into the field.',
+  fieldNote: 'This is the field note.'
+};
 
+export const Optional = Template.bind({});
+Optional.args = {
+  name: 'text-field-1',
+  required: false,
+  label: 'Label',
+  type: 'text',
+  title: 'Please enter the proper text into the field.',
+  fieldNote: 'This is a required field'
+};
 
+export const Disabled = Template.bind({});
+Disabled.args = {
+  name: 'text-field-1',
+  disabled: true,
+  label: 'Label',
+  type: 'text',
+  title: 'Please enter the proper text into the field.',
+  fieldNote: 'This is a required field'
+};
 
-stories.add("Default", () => (
-	<TextField
-		name="text-field-1"
-		type="text"
-		placeholder="Placeholder"
-		title="Please enter the proper text into the field."
-		fieldNote="This is the field note."
-		ariaDescribedBy="text-field"
-	/>
-));
+export const WithPlaceholder = Template.bind({});
+WithPlaceholder.args = {
+  name: 'text-field-1',
+  placeholder: 'Placeholder text',
+  label: 'Label',
+  type: 'text',
+  title: 'Please enter the proper text into the field.',
+  fieldNote: 'This is a required field'
+};
 
-stories.add("Required", () => (
-	<TextField
-		name="text-field-1"
-		label="Label"
-		type="text"
-		required={true}
-		placeholder="Placeholder"
-		title="This is a required field. Please enter the proper information"
-		fieldNote="This is a required field."
-		ariaDescribedBy="required-text-field"
-	/>
-));
+export const Email = Template.bind({});
+Email.args = {
+  name: 'text-field-1',
+  label: 'Label',
+  type: 'email',
+  title: 'Please enter the proper text into the field.',
+  fieldNote: 'This is the field note.'
+};
 
-stories.add("Disabled", () => (
-	<TextField
-		name="text-field-1"
-		label="Label"
-		type="text"
-		placeholder="Placeholder"
-		title="Please enter the proper text into the field."
-		fieldNote="The is a disabled field."
-		ariaDescribedBy="disabled-text-field"
-		disabled
-	/>
-));
+export const Error = Template.bind({});
+Error.args = {
+  name: 'text-field-1',
+  label: 'Label',
+  type: 'text',
+  placeholder: 'Placeholder',
+  title: 'Please enter the proper text into the field.',
+  isError: true,
+  fieldNote: 'This is a field with an error'
+};
 
-stories.add("Email", () => (
-	<TextField
-		name="text-field-1"
-		label="Label"
-		type="email"
-		required
-		placeholder="Placeholder"
-		title="Please enter a valid email address."
-		fieldNote="This is a fieldnote."
-		ariaDescribedBy="error-text-field"
-	/>
-));
+export const ErrorNoMessage = Template.bind({});
+ErrorNoMessage.args = {
+  name: 'text-field-1',
+  label: 'Label',
+  type: 'text',
+  placeholder: 'Placeholder',
+  title: 'Please enter the proper text into the field.',
+  isError: true
+};
 
-stories.add("Error", () => (
-	<TextField
-		hasError
-		name="text-field-1"
-		label="Label"
-		type="text"
-		required
-		placeholder="Placeholder"
-		title="Please enter the proper text into the field."
-		fieldNote="There is an error."
-		ariaDescribedBy="error-text-field"
-	/>
-));
+export const OnBlur = () => <TextFieldExample />;

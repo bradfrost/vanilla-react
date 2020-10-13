@@ -1,21 +1,18 @@
-import React from "react";
-import { storiesOf } from "@storybook/react";
+import React from 'react';
+import InlineForm from './InlineForm';
 
+export default {
+  title: 'Molecules/Forms/InlineForm',
+  component: InlineForm
+};
 
+const Template = args => <InlineForm {...args} />;
 
-import { InlineForm } from "./InlineForm";
-
-let stories = storiesOf("Molecules/Forms/InlineForm", module);
-
-
-
-stories.add("Default", () => (
-	<InlineForm
-		label="Search"
-		method="post"
-		action="http://google.com"
-		id="demo-form-id"
-		placeholder="Placeholder"
-		cta="Action"
-	/>
-));
+export const Default = Template.bind({});
+Default.args = {
+  label: 'Search',
+  method: 'post',
+  action: 'http://google.com',
+  placeholder: 'Placeholder',
+  cta: 'Action'
+};

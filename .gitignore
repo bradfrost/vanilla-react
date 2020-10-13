@@ -10,6 +10,11 @@
 /build
 _site
 dist
+storybook-static
+storybook
+storybook-components
+
+# Component CSS
 
 # misc
 .DS_Store
@@ -18,6 +23,7 @@ dist
 .env.test.local
 .env.production.local
 .cache
+.idea
 
 npm-debug.log*
 yarn-debug.log*
@@ -26,3 +32,10 @@ yarn-error.log*
 *.scssc
 
 .sass-cache
+/.vscode
+*.css
+*.css.map
+!DesignTokens.css
+!Utilities.css
+!IconGrid.css
+/src/css/design-system.css

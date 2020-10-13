@@ -1,40 +1,61 @@
-import React, { PropTypes } from "react";
-import { storiesOf } from "@storybook/react";
+import React from 'react';
+import Select from './Select';
 
+export default {
+  title: 'Atoms/Forms/Select',
+  component: Select
+};
 
-import { Select } from "./Select";
+function handleOnChange() {}
 
-let stories = storiesOf("Atoms/Forms/Select", module);
+const Template = args => <Select {...args} />;
 
+export const Default = Template.bind({});
+Default.args = {
+  onChange: handleOnChange,
+  items: [
+    {
+      value: 'value-1',
+      label: 'Value 1'
+    },
+    {
+      value: 'value-2',
+      label: 'Value 2'
+    },
+    {
+      value: 'value-3',
+      label: 'Value 3'
+    }
+  ]
+};
 
-stories.add("Default", () => (
-	<Select
-		listItems={[
-			{
-				value: "value-1",
-				option: "Value 1"
-			},
-			{
-				value: "value-2",
-				option: "Value 2"
-			},
-			{
-				optGroupLabel: "Group 1",
-				optGroupItems: [
-					{
-						value: "value-3",
-						option: "Value 3"
-					},
-					{
-						value: "value-4",
-						option: "Value 4"
-					},
-					{
-						value: "value-5",
-						option: "Value 5"
-					}
-				]
-			}
-		]}
-	/>
-));
+export const WithOptionGroup = Template.bind({});
+WithOptionGroup.args = {
+  items: [
+    {
+      value: 'value-1',
+      label: 'Value 1'
+    },
+    {
+      value: 'value-2',
+      label: 'Value 2'
+    },
+    {
+      optGroupLabel: 'Group 1',
+      optGroupItems: [
+        {
+          value: 'value-3',
+          label: 'Value 3'
+        },
+        {
+          value: 'value-4',
+          label: 'Value 4'
+        },
+        {
+          value: 'value-5',
+          label: 'Value 5'
+        }
+      ]
+    }
+  ]
+};

@@ -1,0 +1,53 @@
+
+$color-brand-blue: #0000ff;
+$color-neutral-black: #000000;
+$color-utility-warning: #ffc658;
+$color-neutral-gray-80: #333333;
+$color-neutral-gray-60: #666666;
+$color-neutral-gray-50: #808080;
+$color-neutral-gray-20: #cccccc;
+$color-neutral-gray-42: #949494;
+$color-utility-success: #44883e;
+$color-neutral-gray-10: #e6e6e6;
+$color-utility-info: #0000ff;
+$color-neutral-white: #ffffff;
+$color-utility-error: #d50032;
+$color-neutral-gray-05: #f2f2f2;
+/* The size value is used as a multiplier to determine typography and spacing sizes. For instance, font-size-large = size(3), which results in a 24px font size. */
+$size-base-unit: 0.5rem;
+$font-size-xl: 2.5rem;
+$font-size-med-2: 1.25rem;
+$font-size-xxs: .625rem;
+$font-size-sm: .75rem;
+$font-size-xs: .6875rem;
+$font-weight-semibold: 600;
+$font-size-large: 1.5rem;
+$font-size-sm-2: .875rem;
+$font-size-large-2: 2rem;
+$font-family-primary: "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+$font-weight-bold: 700;
+$font-weight-normal: 400;
+$font-size-med: 1rem;
+$font-weight-light: 300;
+/* Caps the width of the content to a maximum value so the page doesn't span the full width of the viewport on larger screens */
+$l-max-width: 71rem;
+/* Caps the width of text passages to an optimal reading length */
+$l-linelength-width: 36rem;
+$border-width: 1px;
+$border-width-med: 2px;
+$border-width-large: 4px;
+$border-width-xl: 8px;
+$border-radius: 4px;
+$border-radius-large: 8px;
+$border-radius-xl: 20px;
+$box-shadow-small: 1px 1px 2px rgba(0, 0, 0, 0.25);
+$box-shadow-medium: 0 16px 24px 0 rgba(0, 0, 0, 0.2);
+$anim-fade-quick: 0.15s;
+$anim-fade-long: 0.4s;
+$anim-move-quick: 0.3s;
+$anim-ease: ease-out;
+$bp-small: 28em;
+$bp-small-2: 35em;
+$bp-med: 47em;
+$bp-large: 60em;
+$bp-xl: 70em;

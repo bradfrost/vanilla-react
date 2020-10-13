@@ -1,12 +1,35 @@
-@import '../../css/scss/abstracts/variables';
-@import '../../css/scss/abstracts/mixins';
+@import '../../css/scss/abstracts/_variables.scss';
+@import '../../css/scss/abstracts/_mixins.scss';
 
 /*------------------------------------*\
     #INLINE CHECKBOX
 \*------------------------------------*/
 
 /**
- * 1) 
+ * 1) Form control containing a checkbox. Outer element is a <label>
+ * 2) For a field of multiple checkboxes, use inline checkbox field variation
  */
-.c-inline-checkbox {
+.cn-c-inline-checkbox {
+  @include typography-preset-6;
+  color: $color-form-label;
+  display: flex;
+}
+
+/**
+ * Inline checkbox input
+ * 1) Actual checkbox control
+ */
+.cn-c-inline-checkbox__control {
+  display: block;
+  margin-right: size(1);
+  position: relative;
+  top: 2px;
+  flex: none;
+}
+
+/**
+ * Inline checkbox text
+ */
+.cn-c-inline-checkbox__text {
+  @include legacyLabelOverrides;
 }

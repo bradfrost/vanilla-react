@@ -1,5 +1,5 @@
-@import '../../css/scss/abstracts/variables';
-@import '../../css/scss/abstracts/mixins';
+@import '../../css/scss/abstracts/_variables.scss';
+@import '../../css/scss/abstracts/_mixins.scss';
 
 /*------------------------------------*\
     #PAGE HEADER
@@ -8,13 +8,62 @@
 /**
  * 1) Container that consists of of a page header title and description
  */
-.c-page-header {
-  margin-bottom: 2rem;
+.cn-c-page-header {
+  margin-bottom: size(4);
+}
+
+/**
+ * Center-aligned page header 
+ */
+.cn-c-page-header--center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/**
+ * Page header kicker
+ * 1) Kicker is an optional element that appears above the header
+ */
+.cn-c-page-header__kicker {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /**
  * Page header title
  */
-.c-page-header__title {
-  margin-bottom: 0.5rem;
+.cn-c-page-header__title {
+  @include reset;
+  @include typography-preset-1--bold($responsive: true);
+  max-width: 62rem;
+
+  .cn-c-page-header--center & {
+    text-align: center;
+  }
+}
+
+/**
+ * Page title after
+ * 1) An optional container that lives inside
+ */
+.cn-c-page-header__title-after {
+  display: inline-block;
+  margin-left: size(1.5);
+  position: relative;
+  top: size(-1);
+}
+
+/**
+ * Page description
+ */
+.cn-c-page-header__description {
+  @include reset;
+  margin-top: size(1);
+  max-width: $l-linelength-width;
+  @include typography-preset-4($margin: true, $responsive: true);
+
+  .cn-c-page-header--center & {
+    text-align: center;
+  }
 }

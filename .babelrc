@@ -1,9 +1,28 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false
+      }
+    ],
+    [
+      "@babel/preset-react",
+      {
+        "modules": false
+      }
+    ]
+  ],
   "env": {
+    "test": {
+      "presets": ["@babel/preset-env", "@babel/preset-react"]
+    },
     "distribution": {
       "plugins": [
-        ["babel-plugin-transform-rename-import", { "original": "^(.+?)\\.scss$", "replacement": "$1.css" }]
+        [
+          "babel-plugin-transform-rename-import",
+          { "original": "^(.+?)\\.scss$", "replacement": "$1.css" }
+        ]
       ]
     }
   }

@@ -1,5 +1,5 @@
-@import '../../css/scss/abstracts/variables';
-@import '../../css/scss/abstracts/mixins';
+@import '../../css/scss/abstracts/_variables.scss';
+@import '../../css/scss/abstracts/_mixins.scss';
 
 /*------------------------------------*\
     #LOGO
@@ -7,15 +7,36 @@
 
 /**
  * Branding image or text of the site
+ * 1) Wrapper (usually a link) that contains the logo graphic
  */
-.c-logo {
-  display: inline;
-  max-width: 120px;
+.cn-c-logo {
+  max-width: 175px;
+
+  /**
+   * Logo within defaulkt header
+   */
+  .cn-c-header & {
+    grid-column: 1/3;
+    z-index: 3;
+  }
 }
 
 /**
- * Logo image 
+ * Logo link 
  */
-.c-logo__img {
+.cn-c-logo__link {
   display: block;
+
+  &:focus {
+    @include focusInverted;
+  }
+}
+
+/**
+ * Logo image
+ * 1) Actual graphic of the logo
+ */
+.cn-c-logo__img {
+  display: block;
+  width: 100%;
 }

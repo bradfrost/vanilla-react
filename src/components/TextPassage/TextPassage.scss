@@ -1,5 +1,5 @@
-@import '../../css/scss/abstracts/variables';
-@import '../../css/scss/abstracts/mixins';
+@import '../../css/scss/abstracts/variables.scss';
+@import '../../css/scss/abstracts/mixins.scss';
 
 /*------------------------------------*\
     #TEXT PASSAGE
@@ -8,89 +8,158 @@
 /**
  * 1) A passage of text, including various components (i.e. article, blog post)
  */
-.c-text-passage {
+.cn-c-text-passage {
+  /**
+	 * Paragraph within text passage
+	 */
   p {
-    margin-bottom: 1rem;
+    margin-bottom: size(3);
   }
 
   /**
-   * Link within the text passage
-   */
+	 * Link within the text passage
+	 */
   a {
-    text-decoration: underline;
+    @include text-link;
   }
 
   /**
-   * First-level heading within text passage
-   */
+	  * First-level heading within text passage
+	  */
   h1 {
-    margin-bottom: 1rem;
+    @include typography-preset-1--bold($margin: true, $responsive: true);
   }
 
   /**
-   * Second-level heading within text passage
-   */
+	 * Second-level heading within text passage
+	 */
   h2 {
-    margin: 1rem 0 1rem;
-    color: $color-neutral-gray-73;
-    font-weight: bold;
+    @include typography-preset-2--bold($margin: true, $responsive: true);
+    margin-top: size(5);
   }
 
   /**
-   * Third-level heading within text passage
-   */
+	 * Third-level heading within text passage
+	 */
   h3 {
-    margin: 1rem 0 1rem;
+    @include typography-preset-3--bold($margin: true, $responsive: true);
+    margin-top: size(5);
   }
 
   /**
-   * Fourth-level heading within text passage
-   */
+	 * Fourth-level heading within text passage
+	 */
   h4 {
-    margin: 1rem 0 1rem;
+    @include typography-preset-4--bold($margin: true, $responsive: true);
+    margin-top: size(5);
   }
 
   /**
-   * Fifth-level heading within text passage
-   */
+	 * Fifth-level heading within text passage
+	 */
   h5 {
-    margin: 1rem 0 1rem;
+    @include typography-preset-5--bold($margin: true, $responsive: true);
+    margin-top: size(5);
   }
 
   /**
-   * Sixth-level heading within text passage
-   */
+	 * Sixth-level heading within text passage
+	 */
   h6 {
-    margin: 1rem 0 1rem;
+    @include typography-preset-5--bold($margin: true);
+    margin-top: size(5);
   }
 
   /**
-   * Unordered list within text passage
-   */
+	 * Unordered list within text passage
+	 */
   ul {
+    @include reset;
     list-style: disc;
-    margin-left: 1rem;
-    margin-bottom: 1rem;
-
-    li:last-child {
-      margin-bottom: 0;
-    }
+    margin-left: size(2);
+    margin-bottom: size(3);
   }
 
   /**
-   * Ordered list within text passage
-   */
+	 * Ordered list within text passage
+	 */
   ol {
+    @include reset;
     list-style: decimal;
-    margin-left: 1rem;
-    margin-bottom: 1rem;
-
-    li:last-child {
-      margin-bottom: 0;
-    }
+    margin-left: size(2);
+    margin-bottom: size(3);
   }
+
+  /**
+	 * List item within text passage
+	 */
+  li {
+    margin-bottom: size(1);
+  }
+
+  /**
+     * Blockquote within text passage
+     */
+  blockquote {
+    font-style: italic;
+    border-left: $border-width solid $color-neutral-gray-42;
+    color: $color-neutral-gray-42;
+    padding-left: size(2);
+    margin-left: 0;
+    margin-bottom: size(3);
+  }
+
+  /**
+     * Horizontal rule 
+     */
+  hr {
+    border: 0;
+    height: 1px;
+    background: $color-neutral-gray-10;
+    margin: size(3) 0;
+  }
+}
+
+/**
+ * Small text passage
+ */
+.cn-c-text-passage--small {
+  @include typography-preset-7; /* 1 */
 
   li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+}
+
+.cn-c-text-passage--large {
+  @include typography-preset-3;
+
+  ul {
+    margin-left: size(3);
+  }
+
+  ol {
+    margin-left: size(3);
+  }
+}
+
+.cn-c-text-passage__inner {
+  /**
+     * First child of a text passage
+     * 1) Zero out top margin to avoid unintended
+     *    gaps when leading with a heading or other
+     *    element that has a top margin
+     */
+  > :first-child {
+    margin-top: 0; /* 1 */
+  }
+
+  /**
+     * Last child of a text passage
+     * 1) Zero out bottom margin to allow the container
+     *    element to control the bottom margin
+     */
+  > :last-child {
+    margin-bottom: 0;
   }
 }

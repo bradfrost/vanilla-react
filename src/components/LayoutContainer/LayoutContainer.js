@@ -5,9 +5,11 @@ import './LayoutContainer.scss';
 
 class LayoutContainer extends React.Component {
   render() {
-    const { className, children, variant, align, ...other } = this.props;
+    const { className, children, variant, ...other } = this.props;
 
-    const componentClassName = classnames('l-container', className, {});
+    const componentClassName = classnames('cn-l-container', className, {
+      'cn-l-container--narrow': variant == 'narrow'
+    });
     return (
       <div className={componentClassName} {...other}>
         {children}
@@ -17,11 +19,6 @@ class LayoutContainer extends React.Component {
 }
 
 LayoutContainer.propTypes = {
-  /**
-   * Align variations:
-   * - **center** yields a LayoutContainer that horizontally and vertically centers the layout container
-   */
-  align: PropTypes.oneOf(['center']),
   /**
    * Child node(s) that can be nested inside component
    */

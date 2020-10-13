@@ -1,11 +1,12 @@
-import React from "react";
-import { storiesOf } from "@storybook/react";
+import React from 'react';
+import Footer from './Footer';
 
+export default {
+  title: 'Organisms/Global/Footer',
+  component: Footer
+};
 
-import { Footer } from "./Footer";
+const Template = args => <Footer {...args}>Footer content</Footer>;
 
-let stories = storiesOf("Organisms/Global/Footer", module);
-
-
-
-stories.add("Default", () => <Footer>Hello Footer</Footer>);
+export const Default = Template.bind({});
+Default.args = {};

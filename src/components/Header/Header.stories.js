@@ -1,11 +1,12 @@
-import React from "react";
-import { storiesOf } from "@storybook/react";
+import React from 'react';
+import Header from './Header';
 
+export default {
+  title: 'Organisms/Global/Header',
+  component: Header
+};
 
-import { Header } from "./Header";
+const Template = args => <Header {...args}></Header>;
 
-let stories = storiesOf("Organisms/Global/Header", module);
-
-
-
-stories.add("Default", () => <Header />);
+export const Default = Template.bind({});
+Default.args = {};

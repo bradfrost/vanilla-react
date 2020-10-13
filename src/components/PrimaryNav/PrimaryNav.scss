@@ -1,5 +1,5 @@
-@import '../../css/scss/abstracts/variables';
-@import '../../css/scss/abstracts/mixins';
+@import '../../css/scss/abstracts/_variables.scss';
+@import '../../css/scss/abstracts/_mixins.scss';
 
 /*------------------------------------*\
     #PRIMARY NAVIGATION
@@ -8,28 +8,46 @@
 /**
  * Primary navigation existing in the header and maybe the footer
  * 1) The outer <nav> wrapper of the primary navigation
+ * 2) Normally margin-top should not be used to space elements, but
+ *    the primary navigation is
  */
-.c-primary-nav {
-  margin-left: auto;
+
+.cn-c-primary-nav {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
 /**
  * Primary nav list
- * 1) The list of nav items
+ * 1) The actual list of nav items
  */
-.c-primary-nav__list {
+.cn-c-primary-nav__list {
+  @include reset;
   display: flex;
   list-style: none;
-  margin: 0;
-  padding: 0;
+  z-index: 2;
 }
 
 /**
  * Primary nav item
- * 1) individual list item 
+ * 1) Individual list item
  */
-.c-primary-nav__item {
-  margin-right: 2rem;
+.cn-c-primary-nav__item {
+  margin-left: size(4);
+
+  /**
+     * First primary nav item
+     */
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+/**
+ * Primary nav link
+ * 1) Individual link within each primary nav item
+ */
+.cn-c-primary-nav__link {
+  display: flex;
 }

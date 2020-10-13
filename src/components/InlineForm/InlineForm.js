@@ -1,39 +1,78 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from '../Button/Button';
+import shortid from 'shortid';
+import Form from '../Form';
+import Label from '../Label';
+import TextInput from '../TextInput';
+import Button from '../Button';
 import './InlineForm.scss';
 
-export class InlineForm extends Component {
+class InlineForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.id = this.props.id || shortid.generate();
+  }
+
   render() {
+    const {
+      method,
+      action,
+      id,
+      label,
+      placeholder,
+      cta,
+      ...other
+    } = this.props;
+
     return (
-      <form
-        className='c-inline-form'
-        method={this.props.method}
-        action={this.props.action}
+      <Form
+        className='cn-c-inline-form'
+        method={method}
+        action={action}
+        {...other}
       >
-        <label
-          htmlFor={this.props.id}
-          className='c-inline-form__label u-is-vishidden'
-        >
-          {this.props.label}
-        </label>
-        <input
-          id={this.props.id}
-          className='c-inline-form__input'
-          placeholder={this.props.placeholder}
+        <Label
+          htmlFor={this.id}
+          className='cn-c-inline-form__label cn-u-is-vishidden'
+          text={label}
+        />
+        <TextInput
+          id={this.id}
+          className='cn-c-inline-form__input'
+          placeholder={placeholder}
         />
 
-        <Button text={this.props.cta} />
-      </form>
+        <Button variant='primary' text={cta} />
+      </Form>
     );
   }
 }
 
 InlineForm.propTypes = {
-  method: PropTypes.oneOf(['get', 'post']).isRequired,
+  /**
+   * HTML action attribute, which contains the URI to be triggered on form submission
+   */
   action: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  /**
+   * Button call to action text
+   */
+  cta: PropTypes.string,
+  /**
+   * HTML id for the component
+   */
+  id: PropTypes.string,
+  /**
+   * HTML label text
+   */
   label: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  cta: PropTypes.string
+  /**
+   * The HTTP method the browser uses to submit the form
+   */
+  method: PropTypes.oneOf(['get', 'post']).isRequired,
+  /**
+   * Placeholder attribute for input. Note: placeholder should be used sparingly
+   */
+  placeholder: PropTypes.string
 };
+
+export default InlineForm;

@@ -1,26 +1,22 @@
-import React from "react";
-import { storiesOf } from "@storybook/react";
+import React from 'react';
+import Hero from './Hero';
+import TextPassage from '../TextPassage';
 
-
-import { Hero } from "./Hero";
-import heroImg from "../../images/fpo-1200x650.png";
-
-let stories = storiesOf("Molecules/Blocks/Hero", module);
-
-
-
-const hero = {
-	imgsrc: { heroImg },
-	imgalt: "Alt text",
-	title: "Hero Title",
-	description: "This is the hero description"
+export default {
+  title: 'Molecules/Blocks/Hero',
+  component: Hero
 };
 
-stories.add("Default", () => (
-	<Hero
-		imgsrc={heroImg}
-		imgalt="Alt Txt"
-		title="Hero Title"
-		description="Hero description"
-	/>
-));
+const Template = args => (
+  <Hero {...args}>
+    <TextPassage>This is the hero description</TextPassage>
+  </Hero>
+);
+
+export const Default = Template.bind({});
+Default.args = {
+  imgSrc: 'https://via.placeholder.com/1200x650',
+  imgAlt: 'Hero Alt Txt',
+  title: 'Hero Title',
+  description: 'This is the hero description'
+};

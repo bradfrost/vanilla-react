@@ -1,13 +1,43 @@
-d/*------------------------------------*\
+@import '../../css/scss/abstracts/variables';
+@import '../../css/scss/abstracts/mixins';
+
+/*------------------------------------*\
     #GRID ITEM
 \*------------------------------------*/
 /**
- * 1) Direct child of l-grid
+ * 1) Direct child of cn-l-grid
  */
-.l-grid__item {
-  width: 100%;
+.cn-l-grid__item {
+  .cn-l-grid & {
+    padding: size(1.5);
+    width: 100%;
 
-  &.l-grid__item--span-2 {
-    grid-column: 1 / -1;
+    @supports (display: grid) {
+      padding: 0;
+    }
+  }
+
+  .cn-l-grid--2up & {
+    @media all and (min-width: $bp-med) {
+      width: 50%;
+    }
+
+    @supports (display: grid) {
+      width: 100%;
+    }
+  }
+
+  .cn-l-grid--1-2-4up & {
+    @media all and (min-width: $bp-med) {
+      width: 50%;
+    }
+
+    @media all and (min-width: $bp-large) {
+      width: 25%;
+    }
+
+    @supports (display: grid) {
+      width: 100%;
+    }
   }
 }

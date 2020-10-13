@@ -1,12 +1,85 @@
-@import '../../css/scss/abstracts/variables';
-@import '../../css/scss/abstracts/mixins';
+@import '../../css/scss/abstracts/variables.scss';
+@import '../../css/scss/abstracts/mixins.scss';
 
 /*------------------------------------*\
-    #TEXTAREA FIELD
+    #TEXTAREA FIELD
 \*------------------------------------*/
 
 /**
- * 1) 
+ * 1) Consists of a label, textarea input, and an optional note about the field.
+ * 2) Default spacing away from text field
+ * 3)
  */
-.c-textarea-field {
+.cn-c-textarea-field {
+  margin-bottom: size(4); /* 2 */
+  position: relative;
+  padding-top: size(1.5); /* 3 */
+}
+
+/**
+ * Textarea field label 
+ */
+.cn-c-textarea-field__label {
+  .cn-is-disabled & {
+    color: $color-form-label-disabled;
+  }
+}
+
+/**
+ * Textarea field body
+ */
+.cn-c-textarea-field__body {
+  position: relative;
+  margin-bottom: size(0.5);
+}
+
+/**
+ * Textarea field input
+ * 1) The actual form control
+ */
+.cn-c-textarea-field__input {
+  /**
+     * Textarea field input within error state
+     */
+  .cn-is-error & {
+    border-color: $color-form-border-error;
+  }
+
+  /**
+     * Textarea field input within disabled field
+     */
+  .cn-is-disabled & {
+    border-color: $color-form-border-disabled;
+    background: $color-form-background-disabled;
+    color: $color-form-label-disabled;
+    cursor: not-allowed;
+  }
+}
+
+/**
+ * Textarea field note
+ */
+.cn-c-textarea-field__note {
+  /**
+     * Textarea field note within error state
+     * 1) Set to display flex to place icon next to the fieldnote
+     */
+  .cn-is-error & {
+    display: inline-flex;
+  }
+}
+
+/**
+ * Textarea field note icon
+ * 1) Icon prepended to fieldnote for error states, etc.
+ */
+.cn-c-textarea-field__note-icon {
+  /**
+     * Textarea field note icon within error state
+     * 1) Change color to error utility
+     */
+  .cn-is-error & {
+    margin-right: size(1);
+    fill: $color-utility-error; /* 1 */
+  }
 }

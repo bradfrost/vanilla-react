@@ -1,63 +1,116 @@
 {
   "name": "vanilla-react",
   "version": "2.0.0",
+  "description": "The React-powered design system library for [Company Name] web applications",
+  "main": "dist/index.js",
   "scripts": {
     "start": "npm run storybook",
     "build": "npm run dist",
     "prepare": "npm run dist",
+    "test": "jest",
+    "build:tokens": "run-p build:tokens:css",
+    "build:tokens-native": "run-p build:tokens:android build:tokens:ios",
+    "build:tokens:android": "theo src/design-tokens/tokens.yml --transform android --format android.xml --dest src/css/scss/abstracts",
+    "build:tokens:ios": "theo src/design-tokens/tokens.yml --transform ios --dest src/css/scss/abstracts",
+    "build:tokens:css": "theo src/design-tokens/tokens.yml --transform web ['color/hex'] --format scss --dest src/css/scss/abstracts",
     "build:js": "babel src --out-dir dist --copy-files",
-    "build:css": "node-sass --output-style compressed -o dist src && postcss dist/components/**/*.css --use autoprefixer --replace",
-    "build:icons": "svg-sprite-generate -d src/icons/ -o src/components/Icon/icons.svg",
-    "storybook": "run-s build:icons && start-storybook -p 9009",
-    "build-storybook": "run-s && build-storybook -o storybook",
+    "build:icons": "make-dir dist/icons && svg-sprite-generate -d src/icons/ -o dist/icons/spritemap.svg",
+    "build:docs": "make-dir dist && react-docgen src/components --pretty -e \"/.*\\.stories\\.js|index\\.js|test\\.js/\" -o dist/componentDocumentation.json",
+    "storybook": "start-storybook -p 9009",
+    "build-storybook": "build-storybook -o storybook",
     "dist": "cross-env BABEL_ENV=distribution run-s dist.clear dist.build dist.clean",
     "dist.clear": "del-cli dist",
-    "dist.build": "npm-run-all --parallel build:css build:icons build:js",
-    "dist.clean": "del-cli dist/**/*.stories.js dist/components/**/*.scss",
+    "dist.build": "run-p build:icons build:js build:docs",
+    "dist.clean": "del-cli dist/**/*.stories.js dist/components/**/*.scss dist/**/*.css.map",
     "plop": "plop component"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
+    "create-react-context": "^0.3.0",
+    "downshift": "^3.2.10",
     "prop-types": "^15.7.2",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "classnames": "^2.2.6"
+    "react": "^16.13.1",
+    "react-children-by-type": "^1.0.0",
+    "react-dates": "^20.2.0",
+    "react-dom": "^16.13.1",
+    "react-focus-lock": "^2.2.1",
+    "react-portal": "^4.2.0",
+    "shortid": "^2.2.14",
+    "svg4everybody": "^2.1.9",
+    "util-deprecate": "^1.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
-    "@storybook/addon-actions": "^5.3.13",
-    "@storybook/addon-knobs": "^5.3.13",
-    "@storybook/addon-links": "^5.3.13",
-    "@storybook/addons": "^5.3.13",
-    "@storybook/react": "^5.3.13",
+    "@storybook/addon-essentials": "^6.0.25",
+    "@storybook/addon-links": "^6.0.25",
+    "@storybook/addon-storyshots": "^6.0.25",
+    "@storybook/addons": "^6.0.25",
+    "@storybook/react": "^6.0.25",
     "autoprefixer": "^9.5.1",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-rename-import": "^2.3.0",
     "cross-env": "^6.0.0",
     "css-loader": "^3.2.0",
     "del-cli": "^1.1.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3",
     "eslint": "^5.16.0",
-    "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-react": "^7.21.3",
+    "husky": "^3.0.8",
+    "jest": "^24.9.0",
     "make-dir-cli": "^2.0.0",
-    "node-sass": "^4.12.0",
+    "moment": "^2.24.0",
     "npm-run-all": "^4.1.5",
     "onchange": "^5.2.0",
+    "optimist": "^0.6.1",
     "plop": "^2.4.0",
     "postcss-cli": "^6.1.2",
     "prettier": "^1.17.1",
+    "pretty-quick": "^1.11.1",
+    "react-docgen": "^4.1.1",
+    "react-test-renderer": "^16.12.0",
+    "regenerator-runtime": "^0.13.3",
+    "sass": "^1.26.11",
     "sass-loader": "^8.0.0",
-    "scsstojson": "^1.0.2",
-    "storybook-addon-jsx": "^7.1.14",
-    "style-loader": "^1.0.0",
+    "style-loader": "^1.3.0",
     "svg-sprite-generator": "0.0.7",
+    "svg-spritemap-webpack-plugin": "^3.5.1",
+    "theo": "^8.1.3",
     "webpack-concat-plugin": "^3.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "browserslist": [
     ">0.2%",
     "not dead",
-    "not ie <= 11",
+    "not ie < 10",
     "not op_mini all"
-  ]
+  ],
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>jest/setup.js"
+    ],
+    "testEnvironment": "jsdom",
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "moduleNameMapper": {
+      "svg4everybody": "<rootDir>/jest/mocks/function-mock.js",
+      "react-portal": "<rootDir>/jest/mocks/portal-mock.js",
+      "shortid": "<rootDir>/jest/mocks/shortid-mock.js",
+      ".*\\.(css|less|styl|scss|sass)$": "<rootDir>/jest/mocks/style-mock.js",
+      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/jest/mocks/file-mock.js"
+    }
+  }
 }

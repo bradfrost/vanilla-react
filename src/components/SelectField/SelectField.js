@@ -1,64 +1,164 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Select } from '../Select/Select';
-import { Field } from '../Field/Field';
+import classnames from 'classnames';
+import shortid from 'shortid';
+import Select from '../Select';
+import Label from '../Label';
+import Icon from '../Icon';
+import FieldNote from '../FieldNote';
+import './SelectField.scss';
 
-export class SelectField extends Component {
+class SelectField extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.state = { value: this.props.value || '' };
+
+    this.onChange = this.onChange.bind(this);
+
+    this.id = this.props.id || shortid.generate();
+    if (this.props.fieldNote) {
+      this.ariaDescribedBy = this.props.ariaDescribedBy || shortid.generate();
+    }
   }
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-    console.log(event.target.value);
+  onChange(e) {
+    if (this.props.onChange) {
+      this.props.onChange(e);
+      return;
+    }
+    this.setState({ value: e.target.value });
   }
 
   render() {
+    const {
+      className,
+      id,
+      label,
+      disabled,
+      required,
+      ariaDescribedBy,
+      isError,
+      fieldNote,
+      hideLabel,
+      onChange,
+      optionalLabel,
+      requiredLabel,
+      items,
+      variant,
+      focus,
+      ...other
+    } = this.props;
+
+    const componentClassName = classnames('cn-c-select-field', className, {
+      'cn-is-error': isError,
+      'cn-is-disabled': disabled,
+      'cn-c-select-field--inline': variant == 'inline'
+    });
+
     return (
-      <Field
-        className='c-select-field'
-        id={this.props.id}
-        label={this.props.label}
-        hasError={this.props.hasError}
-        disabled={this.props.disabled}
-        required={this.props.required}
-        fieldNote={this.props.fieldNote}
-        title={this.props.title}
-        ariaDescribedBy={this.props.ariaDescribedBy}
-        ariaLabelledBy={this.props.ariaLabelledBy}
-      >
-        <Select
-          value={this.state.value}
-          changeAction={this.handleChange}
-          disabled={this.props.disabled}
-          ariaDescribedBy={this.props.ariaDescribedBy}
-          ariaLabelledBy={this.props.ariaLabelledBy}
+      <div className={componentClassName}>
+        <Label
+          className='cn-c-select-field__label'
+          htmlFor={this.id}
+          text={label}
+          hideLabel={hideLabel}
+          required={required}
+          optionalLabel={optionalLabel}
+          requiredLabel={requiredLabel}
         />
-      </Field>
+
+        <div className='cn-c-select-field__body'>
+          <Select
+            className='cn-c-select-field__control'
+            items={items}
+            id={this.id}
+            disabled={disabled}
+            ariaDescribedBy={this.ariaDescribedBy}
+            value={this.state.value}
+            required={required}
+            onChange={this.onChange}
+            {...other}
+          />
+          <Icon name='caret-down' className='cn-c-select-field__icon' />
+        </div>
+        {fieldNote && (
+          <FieldNote
+            className='cn-c-select-field__note'
+            id={this.ariaDescribedBy}
+          >
+            {fieldNote}
+          </FieldNote>
+        )}
+      </div>
     );
   }
 }
 
 SelectField.propTypes = {
-  id: PropTypes.string,
-  label: PropTypes.string,
-  hasError: PropTypes.bool,
-  disabled: PropTypes.bool,
-  required: PropTypes.bool,
-  handleChange: PropTypes.func,
-  title: PropTypes.string,
-  fieldNote: PropTypes.string,
+  /**
+   * HTML id of the helper text used to describe the component
+   */
   ariaDescribedBy: PropTypes.string,
-  ariaLabelledBy: PropTypes.string
+  /**
+   * CSS class names that can be appended to the component.
+   */
+  className: PropTypes.string,
+  /**
+   * Disables the field and prevents editing the contents
+   */
+  disabled: PropTypes.bool,
+  /**
+   * FieldNote
+   * Used as helper text or error message
+   */
+  fieldNote: PropTypes.string,
+  /**
+   * Toggles the visibility of the label. If hidden, the label text will still be accessible to assistive technologies
+   */
+  hideLabel: PropTypes.bool,
+  /**
+   * HTML id for the component
+   */
+  id: PropTypes.string,
+  /**
+   * The array of items to be passed into the component. The array must take on the specified shape
+   */
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      label: PropTypes.string
+    })
+  ).isRequired,
+  /**
+   * HTML label text
+   */
+  label: PropTypes.string,
+  /**
+   * Function that fires when field value has changed
+   */
+  onChange: PropTypes.func,
+  /**
+   * String for the optional label. By default it is '(optional)'
+   */
+  optionalLabel: PropTypes.string,
+  /**
+   * Indicates that field is required for form to be successfully submitted
+   */
+  required: PropTypes.bool,
+  /**
+   * String for the required label to add additional information if needed.
+   */
+  requiredLabel: PropTypes.string,
+  /**
+   * Available _stylistic_ variations of the component.
+   * - **inline** displays the label and input side by side
+   */
+  variant: PropTypes.oneOf(['inline'])
 };
 
 SelectField.defaultProps = {
-  ariaDescribedBy: 'select-field-1',
-  ariaLabelledBy: 'select-field-1-label',
-  id: 'select-field-1',
-  label: 'Label',
-  fieldNote: 'This is a fieldnote'
+  required: true
 };
+
+export default SelectField;

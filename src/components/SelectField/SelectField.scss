@@ -1,12 +1,117 @@
-@import '../../css/scss/abstracts/variables';
-@import '../../css/scss/abstracts/mixins';
-
 /*------------------------------------*\
     #SELECT FIELD
 \*------------------------------------*/
 
 /**
- * 1) 
+ * 1) Form field with a list of options the user can select
  */
-.c-select-field {
+
+@import '../../css/scss/abstracts/variables.scss';
+@import '../../css/scss/abstracts/mixins.scss';
+
+/*------------------------------------*\
+    #FIELDS
+\*------------------------------------*/
+
+/**
+ * 1) Consists of a label, form control, and an optional note about the field.
+ */
+.cn-c-select-field {
+  position: relative;
+}
+
+.cn-c-select-field--inline {
+  display: flex;
+  align-items: center;
+}
+
+.cn-c-select-field__label {
+  .cn-c-select-field--inline & {
+    margin-right: size(1);
+    margin-bottom: 0;
+  }
+}
+
+/**
+ * Select field body
+ */
+.cn-c-select-field__body {
+  position: relative;
+  margin-bottom: size(0.5);
+
+  .cn-c-select-field--inline & {
+    margin-bottom: 0;
+  }
+}
+
+/**
+ * Select field control
+ * 1) Includes select
+ */
+.cn-c-select-field__control {
+  z-index: 1;
+
+  /**
+     * Select field control
+     * 1) Includes select
+     */
+  .cn-is-error & {
+    border-color: $color-utility-error;
+  }
+
+  /**
+     * Select field control within disabled field
+     */
+  .cn-c-select-field.cn-is-disabled & {
+    border-color: $color-form-border-disabled;
+    background: $color-form-background-disabled;
+    color: $color-form-label-disabled;
+    cursor: not-allowed;
+
+    &:hover,
+    &:focus {
+      box-shadow: inset 0px -1px 0 0 $color-neutral-gray-20;
+    }
+  }
+}
+
+/**
+ * Caret icon of the select field
+ * 1) Pointer events added to it so you can click on the caret
+ */
+.cn-c-select-field__icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: size(1);
+  pointer-events: none; /* 1 */
+  fill: $color-brand-blue;
+}
+
+/**
+ * Select field note
+ */
+.cn-c-select-field__note {
+  /**
+     * Select field note within error state
+     * 1) Set to display flex to place icon next to the fieldnote
+     */
+  .cn-is-error & {
+    display: inline-flex;
+  }
+}
+
+/**
+ * Select field note icon
+ * 1) Icon prepended to fieldnote for error states, etc.
+ */
+.cn-c-select-field__note-icon {
+  /**
+     * Select field note icon within error state
+     * 1) Change color to error utility
+     */
+  .cn-is-error & {
+    margin-right: size(1);
+    fill: $color-utility-error; /* 1 */
+  }
 }

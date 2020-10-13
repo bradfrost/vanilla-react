@@ -1,0 +1,13 @@
+# Layout
+# This file contains all of the layout-related properties
+# used by the design system
+global:
+  category: 'web'
+  type: 'layout'
+props:
+  l-max-width:
+    value: '71rem'
+    comment: Caps the width of the content to a maximum value so the page doesn't span the full width of the viewport on larger screens
+  l-linelength-width:
+    value: '36rem' # = 576px
+    comment: Caps the width of text passages to an optimal reading length

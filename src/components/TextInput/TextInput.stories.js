@@ -1,11 +1,12 @@
-import React, { PropTypes } from "react";
-import { storiesOf } from "@storybook/react";
+import React from 'react';
+import TextInput from './TextInput';
 
+export default {
+  title: 'Atoms/Forms/TextInput',
+  component: TextInput
+};
 
-import { TextInput } from "./TextInput";
+const Template = args => <TextInput {...args} />;
 
-let stories = storiesOf("Atoms/Forms/TextInput", module);
-
-
-
-stories.add("Default", () => <TextInput />);
+export const Default = Template.bind({});
+Default.args = {};

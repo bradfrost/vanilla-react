@@ -1,0 +1,24 @@
+/*------------------------------------*\
+    #TABLE OF CONTENTS
+\*------------------------------------*/
+/**
+ * ABSTRACTS..............................Declarations of Sass variables & mixins
+ * BASE...................................Default element styles
+ * UTILITIES..............................Utility classes
+ */
+
+/*------------------------------------*\
+    #ABSTRACTS
+\*------------------------------------*/
+@import 'scss/abstracts/variables';
+@import 'scss/abstracts/mixins';
+
+/*------------------------------------*\
+    #BASE
+\*------------------------------------*/
+@import 'scss/base/reset';
+@import 'scss/base/fonts';
+@import 'scss/base/body';
+@import 'scss/base/links';
+@import 'scss/base/media';
+@import 'scss/base/text';

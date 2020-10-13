@@ -1,12 +1,100 @@
-@import '../../css/scss/abstracts/variables';
-@import '../../css/scss/abstracts/mixins';
+@import '../../css/scss/abstracts/variables.scss';
+@import '../../css/scss/abstracts/mixins.scss';
 
 /*------------------------------------*\
-    #TEXT FIELD
+    #FIELD
 \*------------------------------------*/
 
 /**
- * 1) 
+ * 1) Consists of a label, form control, and an optional note about the field.
  */
-.c-text-field {
+.cn-c-textfield {
+  position: relative;
+}
+
+/**
+ * Text field body
+ */
+.cn-c-textfield__body {
+  position: relative;
+  margin-bottom: size(0.5);
+}
+
+/**
+ * Textfield label 
+ */
+.cn-c-textfield__label {
+  .cn-is-disabled & {
+    color: $color-form-label-disabled;
+  }
+}
+
+/**
+ * Text field input
+ * 1) The actual form control
+ */
+.cn-c-textfield__input {
+  /**
+   * Text field input within error state
+   */
+  .cn-is-error & {
+    border-color: $color-form-border-error;
+  }
+
+  /**
+     * Text field input within disabled field
+     */
+  .cn-is-disabled & {
+    border-color: $color-form-border-disabled;
+    background: $color-form-background-disabled;
+    color: $color-form-label-disabled;
+    cursor: not-allowed;
+  }
+}
+
+/**
+ * Textfield note
+ */
+.cn-c-textfield__note {
+  /**
+     * Textfield note within error state
+     * 1) Set to display flex to place icon next to the fieldnote
+     */
+  .cn-is-error & {
+    display: inline-flex;
+  }
+}
+
+/**
+ * Textfield button
+ */
+.cn-c-textfield__btn {
+  position: absolute;
+  top: 11px;
+  right: size(2);
+}
+
+/**
+ * Textfield icon
+ * 1) Icon that can be placed at the end of the text input
+ */
+.cn-c-textfield__icon {
+  position: absolute;
+  top: size(1.5);
+  right: size(2);
+}
+
+/**
+ * Textfield note icon
+ * 1) Icon prepended to fieldnote for error states, etc.
+ */
+.cn-c-textfield__note-icon {
+  /**
+     * Textfield note icon within error state
+     * 1) Change color to error utility
+     */
+  .cn-is-error & {
+    margin-right: size(1);
+    fill: $color-utility-error; /* 1 */
+  }
 }

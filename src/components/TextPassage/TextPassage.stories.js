@@ -1,11 +1,14 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { TextPassage } from './TextPassage';
+import TextPassage from './TextPassage';
 
-let stories = storiesOf('Organisms/Text/TextPassage', module);
+export default {
+  title: 'Organisms/Text/TextPassage',
+  component: TextPassage
+};
 
-stories.add('Default', () => (
-  <TextPassage>
+const Template = args => (
+  <TextPassage {...args}>
+    <h1>Heading 1</h1>
     <p>
       A text passage contains arbitrary text that might come from a CMS. It
       should live within a container that caps the line length of the text to
@@ -38,10 +41,10 @@ stories.add('Default', () => (
     </ol>
 
     <p>
-      <a href='#awef'>Lorem ipsum dolor sit amet</a>, consectetur adipiscing
-      elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-      aliquip ex ea commodo consequat.
+      <a href='#'>Lorem ipsum dolor sit amet</a>, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+      ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+      ex ea commodo consequat.
     </p>
 
     <blockquote>
@@ -49,6 +52,31 @@ stories.add('Default', () => (
       <cite>Cite source</cite>
     </blockquote>
 
+    <h4>Heading 4</h4>
+
+    <p>
+      This is another paragraph of text. Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+      laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+    <p>
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+      aliquip ex ea commodo consequat.
+    </p>
+
+    <h5>Heading 5</h5>
+
+    <p>
+      This is another paragraph of text. Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+      laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+
     <p>That is all.</p>
   </TextPassage>
-));
+);
+
+export const Default = Template.bind({});
+Default.args = {};
