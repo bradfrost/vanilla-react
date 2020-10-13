@@ -7,8 +7,14 @@
  * 2) Can be used for search, email newsletter signup, and other one-field forms
  */
 .cn-c-inline-form {
-  display: flex;
   padding: size(1) 0;
+}
+
+/**
+ * Inline form body
+ */
+.cn-c-inline-form__body {
+  display: flex;
 }
 
 /**

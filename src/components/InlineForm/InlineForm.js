@@ -36,13 +36,15 @@ class InlineForm extends React.Component {
           className='cn-c-inline-form__label cn-u-is-vishidden'
           text={label}
         />
-        <TextInput
-          id={this.id}
-          className='cn-c-inline-form__input'
-          placeholder={placeholder}
-        />
+        <div class='cn-c-inline-form__body'>
+          <TextInput
+            id={this.id}
+            className='cn-c-inline-form__input'
+            placeholder={placeholder}
+          />
 
-        <Button variant='primary' text={cta} />
+          <Button variant='primary' text={cta} />
+        </div>
       </Form>
     );
   }

@@ -154,7 +154,7 @@ RadioField.propTypes = {
   /**
    * CSS class names that can be appended to the component.
    */
-  className: PropTypes.string,
+  className: PropTypes.striwng,
   /**
    * Disables the field and prevents editing the contents
    */
