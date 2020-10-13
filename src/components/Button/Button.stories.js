@@ -12,10 +12,18 @@ export const Default = Template.bind({});
 Default.args = { text: 'Button' };
 
 export const DefaultWithIconBefore = Template.bind({});
-DefaultWithIconBefore.args = { iconPosition: 'before', iconName: 'caret-left' };
+DefaultWithIconBefore.args = {
+  iconPosition: 'before',
+  iconName: 'caret-left',
+  text: 'Button'
+};
 
 export const DefaultWithIconAfter = Template.bind({});
-DefaultWithIconAfter.args = { iconPosition: 'after', iconName: 'caret-right' };
+DefaultWithIconAfter.args = {
+  iconPosition: 'after',
+  iconName: 'caret-right',
+  text: 'Button'
+};
 
 export const Primary = Template.bind({});
 Primary.args = { variant: 'primary', text: 'Primary Button' };
