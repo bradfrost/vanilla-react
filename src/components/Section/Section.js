@@ -10,7 +10,6 @@ class Section extends React.Component {
       title,
       description,
       children,
-      kicker,
       align,
       ...other
     } = this.props;
@@ -21,15 +20,14 @@ class Section extends React.Component {
 
     return (
       <section className={componentClassName} {...other}>
-        <div className="cn-c-section__inner">
-          <header className="cn-c-section__header">
-            {kicker && <h4 className="cn-c-section__kicker">{kicker}</h4>}
-            <h2 className="cn-c-section__title">{title}</h2>
+        <div className='cn-c-section__inner'>
+          <header className='cn-c-section__header'>
+            <h2 className='cn-c-section__title'>{title}</h2>
             {description && (
-              <p className="cn-c-section__description">{description}</p>
+              <p className='cn-c-section__description'>{description}</p>
             )}
           </header>
-          <div className="cn-c-section__body">{children}</div>
+          <div className='cn-c-section__body'>{children}</div>
         </div>
       </section>
     );
@@ -54,10 +52,6 @@ Section.propTypes = {
    * Description text string that appears below the section title
    */
   description: PropTypes.string,
-  /**
-   * Accompanying text for the section title
-   */
-  kicker: PropTypes.string,
   /**
    * Section heading text string
    */

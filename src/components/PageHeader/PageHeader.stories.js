@@ -18,14 +18,6 @@ WithDescription.args = {
     'This is a description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.'
 };
 
-export const WithKicker = Template.bind({});
-WithKicker.args = {
-  kicker: 'Kicker above title',
-  title: 'Page header title',
-  description:
-    'This is a description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.'
-};
-
 export const Centered = Template.bind({});
 Centered.args = {
   align: 'center',

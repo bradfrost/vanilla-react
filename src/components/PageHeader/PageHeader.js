@@ -9,7 +9,6 @@ class PageHeader extends React.Component {
       align,
       className,
       description,
-      kicker,
       size,
       title,
       titleAfter,
@@ -23,7 +22,6 @@ class PageHeader extends React.Component {
 
     return (
       <div className={componentClassName} {...other}>
-        {kicker && <p className='cn-c-page-header__kicker'>{kicker}</p>}
         <h1 className='cn-c-page-header__title'>{title}</h1>
 
         {description && (
@@ -50,10 +48,6 @@ PageHeader.propTypes = {
    * Description text that appears directly below the main title
    */
   description: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  /**
-   * Kicker appears above the title
-   */
-  kicker: PropTypes.string,
   /**
    * Size variations:
    * - **small** yields a PageHeader with smaller typography

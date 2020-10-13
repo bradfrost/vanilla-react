@@ -22,13 +22,6 @@ WithDescription.args = {
   description: 'This is a description of what the section is'
 };
 
-export const WithKicker = Template.bind({});
-WithKicker.args = {
-  kicker: 'Section kicker',
-  title: 'Section Title',
-  description: 'This is a description of what the section is'
-};
-
 export const Center = Template.bind({});
 Center.args = {
   align: 'center',
